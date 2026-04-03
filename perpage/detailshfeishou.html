@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <title>社会体系飞手信息详情</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../lib/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../css/public.css" media="all">
+</head>
+
+<body>
+
+    <div class="layuimini-container">
+        <div class="layuimini-main">
+            <form class="layui-form" lay-filter="detailform">
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend style="color: #9c9c9c;">基本信息</legend>
+                </fieldset>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">飞手姓名</label>
+                        <div class="layui-input-inline">
+                            <div class="layui-input-wrap">
+                                <div class="layui-input-prefix">
+                                    <i class="layui-icon layui-icon-username"></i>
+                                </div>
+                                <input type="text" name="holdername" readonly class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">身份证号码</label>
+                        <div class="layui-input-inline" style="width: 200px;">
+                            <div class="layui-input-wrap">
+                                <div class="layui-input-prefix">
+                                    <i class="layui-icon layui-icon-vercode"></i>
+                                </div>
+                                <input type="text" name="holderno" readonly class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">人员类别</label>
+                        <div class="layui-input-inline">
+                            <div class="layui-input-wrap">
+                                <div class="layui-input-prefix">
+                                    <i class="layui-icon layui-icon-cols"></i>
+                                </div>
+                                <input type="text" name="leibiename" readonly class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">性别</label>
+                        <div class="layui-input-inline">
+                            <div class="layui-input-wrap">
+                                <div class="layui-input-prefix">
+                                    <i class="layui-icon layui-icon-user"></i>
+                                </div>
+                                <input type="text" name="sex" readonly class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">年龄</label>
+                        <div class="layui-input-inline">
+                            <div class="layui-input-wrap">
+                                <div class="layui-input-prefix">
+                                    <i class="layui-icon layui-icon-time"></i>
+                                </div>
+                                <input type="text" name="nianling" readonly class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">行政区划</label>
+                    <div class="layui-input-inline" style="width: 300px;">
+                        <div class="layui-input-wrap">
+                            <div class="layui-input-prefix">
+                                <i class="layui-icon layui-icon-transfer"></i>
+                            </div>
+                            <input type="text" name="xzmc" readonly class="layui-input">
+                        </div>
+                    </div>
+                    <label class="layui-form-label">单位名称</label>
+                    <div class="layui-input-inline" style="width: 300px;">
+                        <div class="layui-input-wrap">
+                            <div class="layui-input-prefix">
+                                <i class="layui-icon layui-icon-group"></i>
+                            </div>
+                            <input type="text" name="bumen" readonly class="layui-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">手机号码</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="phone" readonly class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">户籍地址</label>
+                    <div class="layui-input-block">
+                        <div class="layui-input-wrap">
+                            <div class="layui-input-prefix">
+                                <i class="layui-icon layui-icon-note"></i>
+                            </div>
+                            <input type="text" name="huji" readonly class="layui-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">居住地址</label>
+                    <div class="layui-input-block">
+                        <div class="layui-input-wrap">
+                            <div class="layui-input-prefix">
+                                <i class="layui-icon layui-icon-home"></i>
+                            </div>
+                            <input type="text" name="zhuzhi" readonly class="layui-input">
+                        </div>
+                    </div>
+                </div>
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend style="color: #9c9c9c;">资质信息</legend>
+                </fieldset>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">资质证书</label>
+                        <div class="layui-input-inline">
+                            <div class="layui-input-wrap">
+                                <div class="layui-input-prefix">
+                                    <i class="layui-icon layui-icon-form"></i>
+                                </div>
+                                <input type="text" name="zizhiname" readonly class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">取得时间</label>
+                        <div class="layui-input-inline">
+                            <div class="layui-input-wrap">
+                                <div class="layui-input-prefix">
+                                    <i class="layui-icon layui-icon-date"></i>
+                                </div>
+                                <input type="text" name="zizhitime" readonly class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">UOM登记</label>
+                        <div class="layui-input-inline" style="width: 500px;">
+                            <div class="layui-input-wrap">
+                                <div class="layui-input-prefix">
+                                    <i class="layui-icon layui-icon-website"></i>
+                                </div>
+                                <input type="text" name="uom" readonly class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend style="color: #9c9c9c;">风险评估</legend>
+                </fieldset>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">前科情况</label>
+                        <div class="layui-input-inline">
+                            <div class="layui-input-wrap">
+                                <div class="layui-input-prefix">
+                                    <i class="layui-icon layui-icon-form"></i>
+                                </div>
+                                <input type="text" name="qianke" readonly class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">是否涉稳</label>
+                        <div class="layui-input-inline">
+                            <input type="checkbox" name="isshewen" lay-skin="tag" lay-text="涉稳人员">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">"黑飞"地点</label>
+                        <div class="layui-input-inline" style="width: 500px;">
+                            <div class="layui-input-wrap">
+                                <div class="layui-input-prefix">
+                                    <i class="layui-icon layui-icon-location"></i>
+                                </div>
+                                <input type="text" name="hfdz" readonly class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">"黑飞"历史</label>
+                    <div class="layui-input-block">
+                        <textarea name="hfls" readonly class="layui-textarea"></textarea>
+                    </div>
+                </div>
+
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend style="color: #9c9c9c;">其他信息</legend>
+                </fieldset>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">备注</label>
+                    <div class="layui-input-block">
+                        <textarea name="beizhu" readonly class="layui-textarea"></textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block" style="text-align: center;">
+                        <button class="layui-btn" id="closeBtn">关闭</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../lib/layui/layui.js" charset="utf-8"></script>
+    <script src="../lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
+    <script>
+        function child(dataFromFather) {
+            ///console.log(dataFromFather);
+            var form = layui.form;
+            var datano = dataFromFather.datano;
+
+            if (datano > 0) {
+                $.ajax({
+                    url: '../../api/shfeishou',
+                    type: 'get',
+                    data: {
+                        datano: datano
+                    },
+                    dataType: "json",
+                    success: function (result) {
+                        ///console.log(result);
+                        if (result.code === 0 && result.data.length === 1) {
+                            var data = result.data[0];
+                            form.val('detailform', {
+                                "holdername": data.holdername,
+                                "holderno": data.holderid,
+                                "xzmc": data.xzmc,
+                                "phone": data.phone,
+                                "huji": data.huji,
+                                "zhuzhi": data.zhuzhi,
+                                "bumen": data.bumen,
+                                "zizhiname": data.zizhiname,
+                                "zizhitime": data.zizhitime,
+                                "leibiename": data.leibiename,
+                                "sex": data.sex,
+                                "nianling": data.nianling,
+                                "qianke": data.qianke,
+                                "hfls": data.hfls,
+                                "hfdz": data.hfdz,
+                                "uom": data.uom,
+                                "beizhu": data.beizhu
+                            });
+
+                            $('input[name="isshewen"]').prop('checked', data.isshewen === '是');
+                            // $('input[name="isshewen"]').prop('checked', data.isshewen === '是').prop('disabled', true);
+                            form.render('checkbox');
+                            $('input[name="isshewen"]').prop('disabled', true);
+                        } else {
+                            layer.msg('未获取到数据', { icon: 2 }, function () {
+                                var iframeIndex = parent.layer.getFrameIndex(window.name);
+                                parent.layer.close(iframeIndex);
+                            });
+                        }
+                    },
+                    error: function () {
+                        layer.msg('数据加载失败', { icon: 2 }, function () {
+                            var iframeIndex = parent.layer.getFrameIndex(window.name);
+                            parent.layer.close(iframeIndex);
+                        });
+                    }
+                });
+            } else {
+                layer.msg('参数错误', { icon: 2 }, function () {
+                    var iframeIndex = parent.layer.getFrameIndex(window.name);
+                    parent.layer.close(iframeIndex);
+                });
+            }
+        }
+
+        layui.use(['form', 'layer'], function () {
+            var form = layui.form;
+            var layer = layui.layer;
+
+            $('#closeBtn').on('click', function () {
+                var iframeIndex = parent.layer.getFrameIndex(window.name);
+                parent.layer.close(iframeIndex);
+                return false;
+            });
+        });
+    </script>
+</body>
+
+</html>

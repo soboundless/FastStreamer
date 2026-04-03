@@ -1,0 +1,110 @@
+<div class="layui-form" style="width: 700px;margin-top: 10px">
+    <div class="layui-form-item">
+        <label class="layui-form-label">包名</label>
+        <div class="layui-input-block">
+            <input type="text" id="packageName" required lay-verify="required" placeholder="请输入包名"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">版本名</label>
+        <div class="layui-input-block">
+            <input type="text" id="versionName" required lay-verify="required" placeholder="请输入版本名"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">版本号</label>
+        <div class="layui-input-block">
+            <input type="number" id="versionCode" required lay-verify="required" placeholder="请输入版本号"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">平台</label>
+        <div class="layui-input-block">
+            <select id="type" lay-verify="required">
+                <option value="1">Android</option>
+                <option value="2">IOS</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">强制更新</label>
+        <div class="layui-input-block" id="isForce">
+            <input type="radio" name="force" value="1" title="是">
+            <input type="radio" name="force" value="0" title="否" checked>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">上传文件</label>
+        <div class="layui-input-inline uploadHeadImage">
+            <div class="layui-upload-drag" id="uploadFile">
+                <i class="layui-icon"></i>
+                <p>点击上传文件，或将文件拖拽到此处！</p>
+            </div>
+        </div>
+        <div class="layui-input-inline">
+            <div id="uploadResult" class="layui-upload-list">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">升级说明</label>
+        <div class="layui-input-block">
+            <textarea id="desc" lay-verify="required" placeholder="请输入内容" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" id="commit" lay-submit lay-filter="formDemo">立即提交</button>
+            <button id="cancel" class="layui-btn layui-btn-primary">返回</button>
+        </div>
+    </div>
+</div>
+
+
+var uploadInst = upload.render({
+            elem: '#uploadFile'
+            , url: '/orgmanage/application/upload'
+            , headers: {authorization: token}
+            , size: 1024 * 50
+            , accept: 'file'
+            , multiple: true
+            , auto: false
+            , bindAction: '#commit'
+            , before: function () {
+                this.data = {
+                    packageName: $('#packageName').val(),
+                    versionName: $('#versionName').val(),
+                    versionCode: $('#versionCode').val(),
+                    type: $('#type').val(),
+                    isForceUpdate: $('#isForce input[name="force"]:checked ').val(),
+                    updateDetail: $('#desc').val()
+                };
+
+                var index = layer.msg('上传中..', {
+                    icon: 16
+                    , shade: 0.5
+                    , time: false
+                });
+
+            }
+            , done: function (res, index, upload) {
+                layer.close(index);
+                if (res.code == 0) {
+                    layer.msg(res.msg)
+                    reloadTable();
+                    $('.org_table_div').show();
+                    $('#uploadImg').hide();
+                    clear()
+                } else
+                this.error(index, upload);
+            }
+            , error: function (index, upload) {
+                layer.msg("上传失败")
+            }
+        });

@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font Awesome 4.7.0 图标库 - 离线版</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9fafb;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: #059669;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        header h1 i {
+            margin-right: 1rem;
+            font-size: 2rem;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .search-container {
+            background-color: white;
+            padding: 1.5rem;
+            margin: 2rem auto;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            max-width: 800px;
+        }
+        
+        .search-box {
+            position: relative;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 3rem;
+            font-size: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        
+        .search-box input:focus {
+            outline: none;
+            border-color: #059669;
+            box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+        }
+        
+        .search-box i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+        }
+        
+        .categories {
+            margin: 2rem 0;
+        }
+        
+        .category {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        
+        .category h2 {
+            background-color: #f1f5f9;
+            padding: 1rem 1.5rem;
+            font-size: 1.5rem;
+            color: #1e293b;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1rem;
+            padding: 1.5rem;
+        }
+        
+        .icon-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.5rem;
+            border: 2px solid #f1f5f9;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .icon-item:hover {
+            border-color: #059669;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transform: translateY(-2px);
+        }
+        
+        .icon-item .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #059669;
+            transition: all 0.3s ease;
+        }
+        
+        .icon-item:hover .icon {
+            transform: scale(1.1);
+        }
+        
+        .icon-item .icon-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1e293b;
+        }
+        
+        .icon-item .icon-code {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.875rem;
+            color: #64748b;
+            background-color: #f8fafc;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .copy-message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #10b981;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .copy-message.show {
+            transform: translateX(0);
+        }
+        
+        footer {
+            background-color: #1e293b;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 4rem;
+        }
+        
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+        
+        footer a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        footer a:hover {
+            color: white;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .icon-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 0.75rem;
+                padding: 1rem;
+            }
+            
+            .icon-item {
+                padding: 1rem;
+            }
+            
+            .icon-item .icon {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .icon-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+            
+            .icon-item {
+                padding: 0.75rem;
+            }
+            
+            .icon-item .icon {
+                font-size: 1.5rem;
+            }
+            
+            .icon-item .icon-name {
+                font-size: 0.875rem;
+            }
+            
+            .icon-item .icon-code {
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+    <!-- 本地引用 Font Awesome 4.7.0 CSS -->
+    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fa fa-th"></i> Font Awesome 4.7.0</h1>
+            <p>离线版图标库 - 收录了 675 个图标</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="search-container">
+            <div class="search-box">
+                <i class="fa fa-search"></i>
+                <input type="text" id="search-input" placeholder="搜索图标...">
+            </div>
+        </div>
+
+        <div class="categories" id="categories">
+            <!-- 基本图标 -->
+            <div class="category" data-category="基本图标">
+                <h2>基本图标 (Basic)</h2>
+                <div class="icon-grid">
+                    <div class="icon-item" data-name="Adjust" data-code="fa-adjust">
+                        <i class="fa fa-adjust icon"></i>
+                        <div class="icon-name">Adjust</div>
+                        <div class="icon-code">fa-adjust</div>
+                    </div>
+                    <div class="icon-item" data-name="Anchor" data-code="fa-anchor">
+                        <i class="fa fa-anchor icon"></i>
+                        <div class="icon-name">Anchor</div>
+                        <div class="icon-code">fa-anchor</div>
+                    </div>
+                    <div class="icon-item" data-name="Asterisk" data-code="fa-asterisk">
+                        <i class="fa fa-asterisk icon"></i>
+                        <div class="icon-name">Asterisk</div>
+                        <div class="icon-code">fa-asterisk</div>
+                    </div>
+                    <div class="icon-item" data-name="Ban" data-code="fa-ban">
+                        <i class="fa fa-ban icon"></i>
+                        <div class="icon-name">Ban</div>
+                        <div class="icon-code">fa-ban</div>
+                    </div>
+                    <div class="icon-item" data-name="Bar Chart" data-code="fa-bar-chart">
+                        <i class="fa fa-bar-chart icon"></i>
+                        <div class="icon-name">Bar Chart</div>
+                        <div class="icon-code">fa-bar-chart</div>
+                    </div>
+                    <div class="icon-item" data-name="Bar Chart Alt" data-code="fa-bar-chart-o">
+                        <i class="fa fa-bar-chart-o icon"></i>
+                        <div class="icon-name">Bar Chart Alt</div>
+                        <div class="icon-code">fa-bar-chart-o</div>
+                    </div>
+                    <div class="icon-item" data-name="Bars" data-code="fa-bars">
+                        <i class="fa fa-bars icon"></i>
+                        <div class="icon-name">Bars</div>
+                        <div class="icon-code">fa-bars</div>
+                    </div>
+                    <div class="icon-item" data-name="Beer" data-code="fa-beer">
+                        <i class="fa fa-beer icon"></i>
+                        <div class="icon-name">Beer</div>
+                        <div class="icon-code">fa-beer</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 品牌图标 -->
+            <div class="category" data-category="品牌图标">
+                <h2>品牌图标 (Brands)</h2>
+                <div class="icon-grid">
+                    <div class="icon-item" data-name="Facebook" data-code="fa-facebook">
+                        <i class="fa fa-facebook icon"></i>
+                        <div class="icon-name">Facebook</div>
+                        <div class="icon-code">fa-facebook</div>
+                    </div>
+                    <div class="icon-item" data-name="Twitter" data-code="fa-twitter">
+                        <i class="fa fa-twitter icon"></i>
+                        <div class="icon-name">Twitter</div>
+                        <div class="icon-code">fa-twitter</div>
+                    </div>
+                    <div class="icon-item" data-name="Google" data-code="fa-google">
+                        <i class="fa fa-google icon"></i>
+                        <div class="icon-name">Google</div>
+                        <div class="icon-code">fa-google</div>
+                    </div>
+                    <div class="icon-item" data-name="Linkedin" data-code="fa-linkedin">
+                        <i class="fa fa-linkedin icon"></i>
+                        <div class="icon-name">Linkedin</div>
+                        <div class="icon-code">fa-linkedin</div>
+                    </div>
+                    <div class="icon-item" data-name="Github" data-code="fa-github">
+                        <i class="fa fa-github icon"></i>
+                        <div class="icon-name">Github</div>
+                        <div class="icon-code">fa-github</div>
+                    </div>
+                    <div class="icon-item" data-name="Youtube" data-code="fa-youtube">
+                        <i class="fa fa-youtube icon"></i>
+                        <div class="icon-name">Youtube</div>
+                        <div class="icon-code">fa-youtube</div>
+                    </div>
+                    <div class="icon-item" data-name="Instagram" data-code="fa-instagram">
+                        <i class="fa fa-instagram icon"></i>
+                        <div class="icon-name">Instagram</div>
+                        <div class="icon-code">fa-instagram</div>
+                    </div>
+                    <div class="icon-item" data-name="Pinterest" data-code="fa-pinterest">
+                        <i class="fa fa-pinterest icon"></i>
+                        <div class="icon-name">Pinterest</div>
+                        <div class="icon-code">fa-pinterest</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 箭头图标 -->
+            <div class="category" data-category="箭头图标">
+                <h2>箭头图标 (Arrows)</h2>
+                <div class="icon-grid">
+                    <div class="icon-item" data-name="Arrow Up" data-code="fa-arrow-up">
+                        <i class="fa fa-arrow-up icon"></i>
+                        <div class="icon-name">Arrow Up</div>
+                        <div class="icon-code">fa-arrow-up</div>
+                    </div>
+                    <div class="icon-item" data-name="Arrow Down" data-code="fa-arrow-down">
+                        <i class="fa fa-arrow-down icon"></i>
+                        <div class="icon-name">Arrow Down</div>
+                        <div class="icon-code">fa-arrow-down</div>
+                    </div>
+                    <div class="icon-item" data-name="Arrow Left" data-code="fa-arrow-left">
+                        <i class="fa fa-arrow-left icon"></i>
+                        <div class="icon-name">Arrow Left</div>
+                        <div class="icon-code">fa-arrow-left</div>
+                    </div>
+                    <div class="icon-item" data-name="Arrow Right" data-code="fa-arrow-right">
+                        <i class="fa fa-arrow-right icon"></i>
+                        <div class="icon-name">Arrow Right</div>
+                        <div class="icon-code">fa-arrow-right</div>
+                    </div>
+                    <div class="icon-item" data-name="Long Arrow Up" data-code="fa-long-arrow-up">
+                        <i class="fa fa-long-arrow-up icon"></i>
+                        <div class="icon-name">Long Arrow Up</div>
+                        <div class="icon-code">fa-long-arrow-up</div>
+                    </div>
+                    <div class="icon-item" data-name="Long Arrow Down" data-code="fa-long-arrow-down">
+                        <i class="fa fa-long-arrow-down icon"></i>
+                        <div class="icon-name">Long Arrow Down</div>
+                        <div class="icon-code">fa-long-arrow-down</div>
+                    </div>
+                    <div class="icon-item" data-name="Long Arrow Left" data-code="fa-long-arrow-left">
+                        <i class="fa fa-long-arrow-left icon"></i>
+                        <div class="icon-name">Long Arrow Left</div>
+                        <div class="icon-code">fa-long-arrow-left</div>
+                    </div>
+                    <div class="icon-item" data-name="Long Arrow Right" data-code="fa-long-arrow-right">
+                        <i class="fa fa-long-arrow-right icon"></i>
+                        <div class="icon-name">Long Arrow Right</div>
+                        <div class="icon-code">fa-long-arrow-right</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 导航图标 -->
+            <div class="category" data-category="导航图标">
+                <h2>导航图标 (Navigation)</h2>
+                <div class="icon-grid">
+                    <div class="icon-item" data-name="Home" data-code="fa-home">
+                        <i class="fa fa-home icon"></i>
+                        <div class="icon-name">Home</div>
+                        <div class="icon-code">fa-home</div>
+                    </div>
+                    <div class="icon-item" data-name="List" data-code="fa-list">
+                        <i class="fa fa-list icon"></i>
+                        <div class="icon-name">List</div>
+                        <div class="icon-code">fa-list</div>
+                    </div>
+                    <div class="icon-item" data-name="List Alt" data-code="fa-list-alt">
+                        <i class="fa fa-list-alt icon"></i>
+                        <div class="icon-name">List Alt</div>
+                        <div class="icon-code">fa-list-alt</div>
+                    </div>
+                    <div class="icon-item" data-name="Map" data-code="fa-map">
+                        <i class="fa fa-map icon"></i>
+                        <div class="icon-name">Map</div>
+                        <div class="icon-code">fa-map</div>
+                    </div>
+                    <div class="icon-item" data-name="Map Marker" data-code="fa-map-marker">
+                        <i class="fa fa-map-marker icon"></i>
+                        <div class="icon-name">Map Marker</div>
+                        <div class="icon-code">fa-map-marker</div>
+                    </div>
+                    <div class="icon-item" data-name="Search" data-code="fa-search">
+                        <i class="fa fa-search icon"></i>
+                        <div class="icon-name">Search</div>
+                        <div class="icon-code">fa-search</div>
+                    </div>
+                    <div class="icon-item" data-name="Sign In" data-code="fa-sign-in">
+                        <i class="fa fa-sign-in icon"></i>
+                        <div class="icon-name">Sign In</div>
+                        <div class="icon-code">fa-sign-in</div>
+                    </div>
+                    <div class="icon-item" data-name="Sign Out" data-code="fa-sign-out">
+                        <i class="fa fa-sign-out icon"></i>
+                        <div class="icon-name">Sign Out</div>
+                        <div class="icon-code">fa-sign-out</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 表单图标 -->
+            <div class="category" data-category="表单图标">
+                <h2>表单图标 (Forms)</h2>
+                <div class="icon-grid">
+                    <div class="icon-item" data-name="Check" data-code="fa-check">
+                        <i class="fa fa-check icon"></i>
+                        <div class="icon-name">Check</div>
+                        <div class="icon-code">fa-check</div>
+                    </div>
+                    <div class="icon-item" data-name="Check Circle" data-code="fa-check-circle">
+                        <i class="fa fa-check-circle icon"></i>
+                        <div class="icon-name">Check Circle</div>
+                        <div class="icon-code">fa-check-circle</div>
+                    </div>
+                    <div class="icon-item" data-name="Times" data-code="fa-times">
+                        <i class="fa fa-times icon"></i>
+                        <div class="icon-name">Times</div>
+                        <div class="icon-code">fa-times</div>
+                    </div>
+                    <div class="icon-item" data-name="Times Circle" data-code="fa-times-circle">
+                        <i class="fa fa-times-circle icon"></i>
+                        <div class="icon-name">Times Circle</div>
+                        <div class="icon-code">fa-times-circle</div>
+                    </div>
+                    <div class="icon-item" data-name="Exclamation" data-code="fa-exclamation">
+                        <i class="fa fa-exclamation icon"></i>
+                        <div class="icon-name">Exclamation</div>
+                        <div class="icon-code">fa-exclamation</div>
+                    </div>
+                    <div class="icon-item" data-name="Exclamation Triangle" data-code="fa-exclamation-triangle">
+                        <i class="fa fa-exclamation-triangle icon"></i>
+                        <div class="icon-name">Exclamation Triangle</div>
+                        <div class="icon-code">fa-exclamation-triangle</div>
+                    </div>
+                    <div class="icon-item" data-name="Question" data-code="fa-question">
+                        <i class="fa fa-question icon"></i>
+                        <div class="icon-name">Question</div>
+                        <div class="icon-code">fa-question</div>
+                    </div>
+                    <div class="icon-item" data-name="Question Circle" data-code="fa-question-circle">
+                        <i class="fa fa-question-circle icon"></i>
+                        <div class="icon-name">Question Circle</div>
+                        <div class="icon-code">fa-question-circle</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 文档图标 -->
+            <div class="category" data-category="文档图标">
+                <h2>文档图标 (Documents)</h2>
+                <div class="icon-grid">
+                    <div class="icon-item" data-name="File" data-code="fa-file">
+                        <i class="fa fa-file icon"></i>
+                        <div class="icon-name">File</div>
+                        <div class="icon-code">fa-file</div>
+                    </div>
+                    <div class="icon-item" data-name="File Text" data-code="fa-file-text">
+                        <i class="fa fa-file-text icon"></i>
+                        <div class="icon-name">File Text</div>
+                        <div class="icon-code">fa-file-text</div>
+                    </div>
+                    <div class="icon-item" data-name="File PDF" data-code="fa-file-pdf-o">
+                        <i class="fa fa-file-pdf-o icon"></i>
+                        <div class="icon-name">File PDF</div>
+                        <div class="icon-code">fa-file-pdf-o</div>
+                    </div>
+                    <div class="icon-item" data-name="File Image" data-code="fa-file-image-o">
+                        <i class="fa fa-file-image-o icon"></i>
+                        <div class="icon-name">File Image</div>
+                        <div class="icon-code">fa-file-image-o</div>
+                    </div>
+                    <div class="icon-item" data-name="File Excel" data-code="fa-file-excel-o">
+                        <i class="fa fa-file-excel-o icon"></i>
+                        <div class="icon-name">File Excel</div>
+                        <div class="icon-code">fa-file-excel-o</div>
+                    </div>
+                    <div class="icon-item" data-name="File Word" data-code="fa-file-word-o">
+                        <i class="fa fa-file-word-o icon"></i>
+                        <div class="icon-name">File Word</div>
+                        <div class="icon-code">fa-file-word-o</div>
+                    </div>
+                    <div class="icon-item" data-name="File Video" data-code="fa-file-video-o">
+                        <i class="fa fa-file-video-o icon"></i>
+                        <div class="icon-name">File Video</div>
+                        <div class="icon-code">fa-file-video-o</div>
+                    </div>
+                    <div class="icon-item" data-name="File Archive" data-code="fa-file-archive-o">
+                        <i class="fa fa-file-archive-o icon"></i>
+                        <div class="icon-name">File Archive</div>
+                        <div class="icon-code">fa-file-archive-o</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 时间图标 -->
+            <div class="category" data-category="时间图标">
+                <h2>时间图标 (Time)</h2>
+                <div class="icon-grid">
+                    <div class="icon-item" data-name="Clock" data-code="fa-clock-o">
+                        <i class="fa fa-clock-o icon"></i>
+                        <div class="icon-name">Clock</div>
+                        <div class="icon-code">fa-clock-o</div>
+                    </div>
+                    <div class="icon-item" data-name="Calendar" data-code="fa-calendar">
+                        <i class="fa fa-calendar icon"></i>
+                        <div class="icon-name">Calendar</div>
+                        <div class="icon-code">fa-calendar</div>
+                    </div>
+                    <div class="icon-item" data-name="Calendar Check" data-code="fa-calendar-check-o">
+                        <i class="fa fa-calendar-check-o icon"></i>
+                        <div class="icon-name">Calendar Check</div>
+                        <div class="icon-code">fa-calendar-check-o</div>
+                    </div>
+                    <div class="icon-item" data-name="Calendar Plus" data-code="fa-calendar-plus-o">
+                        <i class="fa fa-calendar-plus-o icon"></i>
+                        <div class="icon-name">Calendar Plus</div>
+                        <div class="icon-code">fa-calendar-plus-o</div>
+                    </div>
+                    <div class="icon-item" data-name="Calendar Minus" data-code="fa-calendar-minus-o">
+                        <i class="fa fa-calendar-minus-o icon"></i>
+                        <div class="icon-name">Calendar Minus</div>
+                        <div class="icon-code">fa-calendar-minus-o</div>
+                    </div>
+                    <div class="icon-item" data-name="Calendar Times" data-code="fa-calendar-times-o">
+                        <i class="fa fa-calendar-times-o icon"></i>
+                        <div class="icon-name">Calendar Times</div>
+                        <div class="icon-code">fa-calendar-times-o</div>
+                    </div>
+                    <div class="icon-item" data-name="Hourglass" data-code="fa-hourglass">
+                        <i class="fa fa-hourglass icon"></i>
+                        <div class="icon-name">Hourglass</div>
+                        <div class="icon-code">fa-hourglass</div>
+                    </div>
+                    <div class="icon-item" data-name="Hourglass Half" data-code="fa-hourglass-half">
+                        <i class="fa fa-hourglass-half icon"></i>
+                        <div class="icon-name">Hourglass Half</div>
+                        <div class="icon-code">fa-hourglass-half</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 社交图标 -->
+            <div class="category" data-category="社交图标">
+                <h2>社交图标 (Social)</h2>
+                <div class="icon-grid">
+                    <div class="icon-item" data-name="Heart" data-code="fa-heart">
+                        <i class="fa fa-heart icon"></i>
+                        <div class="icon-name">Heart</div>
+                        <div class="icon-code">fa-heart</div>
+                    </div>
+                    <div class="icon-item" data-name="Star" data-code="fa-star">
+                        <i class="fa fa-star icon"></i>
+                        <div class="icon-name">Star</div>
+                        <div class="icon-code">fa-star</div>
+                    </div>
+                    <div class="icon-item" data-name="User" data-code="fa-user">
+                        <i class="fa fa-user icon"></i>
+                        <div class="icon-name">User</div>
+                        <div class="icon-code">fa-user</div>
+                    </div>
+                    <div class="icon-item" data-name="Users" data-code="fa-users">
+                        <i class="fa fa-users icon"></i>
+                        <div class="icon-name">Users</div>
+                        <div class="icon-code">fa-users</div>
+                    </div>
+                    <div class="icon-item" data-name="Comment" data-code="fa-comment">
+                        <i class="fa fa-comment icon"></i>
+                        <div class="icon-name">Comment</div>
+                        <div class="icon-code">fa-comment</div>
+                    </div>
+                    <div class="icon-item" data-name="Comments" data-code="fa-comments">
+                        <i class="fa fa-comments icon"></i>
+                        <div class="icon-name">Comments</div>
+                        <div class="icon-code">fa-comments</div>
+                    </div>
+                    <div class="icon-item" data-name="Thumbs Up" data-code="fa-thumbs-up">
+                        <i class="fa fa-thumbs-up icon"></i>
+                        <div class="icon-name">Thumbs Up</div>
+                        <div class="icon-code">fa-thumbs-up</div>
+                    </div>
+                    <div class="icon-item" data-name="Thumbs Down" data-code="fa-thumbs-down">
+                        <i class="fa fa-thumbs-down icon"></i>
+                        <div class="icon-name">Thumbs Down</div>
+                        <div class="icon-code">fa-thumbs-down</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 工具图标 -->
+            <div class="category" data-category="工具图标">
+                <h2>工具图标 (Tools)</h2>
+                <div class="icon-grid">
+                    <div class="icon-item" data-name="Wrench" data-code="fa-wrench">
+                        <i class="fa fa-wrench icon"></i>
+                        <div class="icon-name">Wrench</div>
+                        <div class="icon-code">fa-wrench</div>
+                    </div>
+                    <div class="icon-item" data-name="Cog" data-code="fa-cog">
+                        <i class="fa fa-cog icon"></i>
+                        <div class="icon-name">Cog</div>
+                        <div class="icon-code">fa-cog</div>
+                    </div>
+                    <div class="icon-item" data-name="Trash" data-code="fa-trash">
+                        <i class="fa fa-trash icon"></i>
+                        <div class="icon-name">Trash</div>
+                        <div class="icon-code">fa-trash</div>
+                    </div>
+                    <div class="icon-item" data-name="Trash Alt" data-code="fa-trash-o">
+                        <i class="fa fa-trash-o icon"></i>
+                        <div class="icon-name">Trash Alt</div>
+                        <div class="icon-code">fa-trash-o</div>
+                    </div>
+                    <div class="icon-item" data-name="Download" data-code="fa-download">
+                        <i class="fa fa-download icon"></i>
+                        <div class="icon-name">Download</div>
+                        <div class="icon-code">fa-download</div>
+                    </div>
+                    <div class="icon-item" data-name="Upload" data-code="fa-upload">
+                        <i class="fa fa-upload icon"></i>
+                        <div class="icon-name">Upload</div>
+                        <div class="icon-code">fa-upload</div>
+                    </div>
+                    <div class="icon-item" data-name="Edit" data-code="fa-edit">
+                        <i class="fa fa-edit icon"></i>
+                        <div class="icon-name">Edit</div>
+                        <div class="icon-code">fa-edit</div>
+                    </div>
+                    <div class="icon-item" data-name="Pencil" data-code="fa-pencil">
+                        <i class="fa fa-pencil icon"></i>
+                        <div class="icon-name">Pencil</div>
+                        <div class="icon-code">fa-pencil</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 通讯图标 -->
+            <div class="category" data-category="通讯图标">
+                <h2>通讯图标 (Communication)</h2>
+                <div class="icon-grid">
+                    <div class="icon-item" data-name="Envelope" data-code="fa-envelope">
+                        <i class="fa fa-envelope icon"></i>
+                        <div class="icon-name">Envelope</div>
+                        <div class="icon-code">fa-envelope</div>
+                    </div>
+                    <div class="icon-item" data-name="Envelope Open" data-code="fa-envelope-open">
+                        <i class="fa fa-envelope-open icon"></i>
+                        <div class="icon-name">Envelope Open</div>
+                        <div class="icon-code">fa-envelope-open</div>
+                    </div>
+                    <div class="icon-item" data-name="Phone" data-code="fa-phone">
+                        <i class="fa fa-phone icon"></i>
+                        <div class="icon-name">Phone</div>
+                        <div class="icon-code">fa-phone</div>
+                    </div>
+                    <div class="icon-item" data-name="Phone Square" data-code="fa-phone-square">
+                        <i class="fa fa-phone-square icon"></i>
+                        <div class="icon-name">Phone Square</div>
+                        <div class="icon-code">fa-phone-square</div>
+                    </div>
+                    <div class="icon-item" data-name="Mail Forward" data-code="fa-mail-forward">
+                        <i class="fa fa-mail-forward icon"></i>
+                        <div class="icon-name">Mail Forward</div>
+                        <div class="icon-code">fa-mail-forward</div>
+                    </div>
+                    <div class="icon-item" data-name="Reply" data-code="fa-reply">
+                        <i class="fa fa-reply icon"></i>
+                        <div class="icon-name">Reply</div>
+                        <div class="icon-code">fa-reply</div>
+                    </div>
+                    <div class="icon-item" data-name="Share" data-code="fa-share">
+                        <i class="fa fa-share icon"></i>
+                        <div class="icon-name">Share</div>
+                        <div class="icon-code">fa-share</div>
+                    </div>
+                    <div class="icon-item" data-name="Share Alt" data-code="fa-share-alt">
+                        <i class="fa fa-share-alt icon"></i>
+                        <div class="icon-name">Share Alt</div>
+                        <div class="icon-code">fa-share-alt</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 媒体图标 -->
+            <div class="category" data-category="媒体图标">
+                <h2>媒体图标 (Media)</h2>
+                <div class="icon-grid">
+                    <div class="icon-item" data-name="Music" data-code="fa-music">
+                        <i class="fa fa-music icon"></i>
+                        <div class="icon-name">Music</div>
+                        <div class="icon-code">fa-music</div>
+                    </div>
+                    <div class="icon-item" data-name="Film" data-code="fa-film">
+                        <i class="fa fa-film icon"></i>
+                        <div class="icon-name">Film</div>
+                        <div class="icon-code">fa-film</div>
+                    </div>
+                    <div class="icon-item" data-name="Picture" data-code="fa-picture-o">
+                        <i class="fa fa-picture-o icon"></i>
+                        <div class="icon-name">Picture</div>
+                        <div class="icon-code">fa-picture-o</div>
+                    </div>
+                    <div class="icon-item" data-name="Camera" data-code="fa-camera">
+                        <i class="fa fa-camera icon"></i>
+                        <div class="icon-name">Camera</div>
+                        <div class="icon-code">fa-camera</div>
+                    </div>
+                    <div class="icon-item" data-name="Video Camera" data-code="fa-video-camera">
+                        <i class="fa fa-video-camera icon"></i>
+                        <div class="icon-name">Video Camera</div>
+                        <div class="icon-code">fa-video-camera</div>
+                    </div>
+                    <div class="icon-item" data-name="Play" data-code="fa-play">
+                        <i class="fa fa-play icon"></i>
+                        <div class="icon-name">Play</div>
+                        <div class="icon-code">fa-play</div>
+                    </div>
+                    <div class="icon-item" data-name="Pause" data-code="fa-pause">
+                        <i class="fa fa-pause icon"></i>
+                        <div class="icon-name">Pause</div>
+                        <div class="icon-code">fa-pause</div>
+                    </div>
+                    <div class="icon-item" data-name="Stop" data-code="fa-stop">
+                        <i class="fa fa-stop icon"></i>
+                        <div class="icon-name">Stop</div>
+                        <div class="icon-code">fa-stop</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 图表图标 -->
+            <div class="category" data-category="图表图标">
+                <h2>图表图标 (Charts)</h2>
+                <div class="icon-grid">
+                    <div class="icon-item" data-name="Bar Chart" data-code="fa-bar-chart">
+                        <i class="fa fa-bar-chart icon"></i>
+                        <div class="icon-name">Bar Chart</div>
+                        <div class="icon-code">fa-bar-chart</div>
+                    </div>
+                    <div class="icon-item" data-name="Line Chart" data-code="fa-line-chart">
+                        <i class="fa fa-line-chart icon"></i>
+                        <div class="icon-name">Line Chart</div>
+                        <div class="icon-code">fa-line-chart</div>
+                    </div>
+                    <div class="icon-item" data-name="Pie Chart" data-code="fa-pie-chart">
+                        <i class="fa fa-pie-chart icon"></i>
+                        <div class="icon-name">Pie Chart</div>
+                        <div class="icon-code">fa-pie-chart</div>
+                    </div>
+                    <div class="icon-item" data-name="Area Chart" data-code="fa-area-chart">
+                        <i class="fa fa-area-chart icon"></i>
+                        <div class="icon-name">Area Chart</div>
+                        <div class="icon-code">fa-area-chart</div>
+                    </div>
+                    <div class="icon-item" data-name="Dollar" data-code="fa-dollar">
+                        <i class="fa fa-dollar icon"></i>
+                        <div class="icon-name">Dollar</div>
+                        <div class="icon-code">fa-dollar</div>
+                    </div>
+                    <div class="icon-item" data-name="Ruble" data-code="fa-ruble">
+                        <i class="fa fa-ruble icon"></i>
+                        <div class="icon-name">Ruble</div>
+                        <div class="icon-code">fa-ruble</div>
+                    </div>
+                    <div class="icon-item" data-name="Yen" data-code="fa-yen">
+                        <i class="fa fa-yen icon"></i>
+                        <div class="icon-name">Yen</div>
+                        <div class="icon-code">fa-yen</div>
+                    </div>
+                    <div class="icon-item" data-name="Euro" data-code="fa-euro">
+                        <i class="fa fa-euro icon"></i>
+                        <div class="icon-name">Euro</div>
+                        <div class="icon-code">fa-euro</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 设备图标 -->
+            <div class="category" data-category="设备图标">
+                <h2>设备图标 (Devices)</h2>
+                <div class="icon-grid">
+                    <div class="icon-item" data-name="Desktop" data-code="fa-desktop">
+                        <i class="fa fa-desktop icon"></i>
+                        <div class="icon-name">Desktop</div>
+                        <div class="icon-code">fa-desktop</div>
+                    </div>
+                    <div class="icon-item" data-name="Laptop" data-code="fa-laptop">
+                        <i class="fa fa-laptop icon"></i>
+                        <div class="icon-name">Laptop</div>
+                        <div class="icon-code">fa-laptop</div>
+                    </div>
+                    <div class="icon-item" data-name="Tablet" data-code="fa-tablet">
+                        <i class="fa fa-tablet icon"></i>
+                        <div class="icon-name">Tablet</div>
+                        <div class="icon-code">fa-tablet</div>
+                    </div>
+                    <div class="icon-item" data-name="Mobile" data-code="fa-mobile">
+                        <i class="fa fa-mobile icon"></i>
+                        <div class="icon-name">Mobile</div>
+                        <div class="icon-code">fa-mobile</div>
+                    </div>
+                    <div class="icon-item" data-name="TV" data-code="fa-television">
+                        <i class="fa fa-television icon"></i>
+                        <div class="icon-name">TV</div>
+                        <div class="icon-code">fa-television</div>
+                    </div>
+                    <div class="icon-item" data-name="Printer" data-code="fa-print">
+                        <i class="fa fa-print icon"></i>
+                        <div class="icon-name">Printer</div>
+                        <div class="icon-code">fa-print</div>
+                    </div>
+                    <div class="icon-item" data-name="Server" data-code="fa-server">
+                        <i class="fa fa-server icon"></i>
+                        <div class="icon-name">Server</div>
+                        <div class="icon-code">fa-server</div>
+                    </div>
+                    <div class="icon-item" data-name="Hard Drive" data-code="fa-hdd-o">
+                        <i class="fa fa-hdd-o icon"></i>
+                        <div class="icon-name">Hard Drive</div>
+                        <div class="icon-code">fa-hdd-o</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="copy-message" id="copy-message">
+        图标代码已复制到剪贴板！
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>Font Awesome 4.7.0 离线图标库</p>
+            <p>收录了 675 个图标，支持离线使用</p>
+            <p><a href="https://fontawesome.com.cn/v4/icons" target="_blank">更多信息请访问 Font Awesome 中文网</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // 搜索功能
+        const searchInput = document.getElementById('search-input');
+        const iconItems = document.querySelectorAll('.icon-item');
+        const categories = document.querySelectorAll('.category');
+
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+
+            iconItems.forEach(item => {
+                const name = item.getAttribute('data-name').toLowerCase();
+                const code = item.getAttribute('data-code').toLowerCase();
+                const category = item.closest('.category').getAttribute('data-category').toLowerCase();
+
+                if (name.includes(searchTerm) || code.includes(searchTerm) || category.includes(searchTerm)) {
+                    item.style.display = 'flex';
+                    item.closest('.category').style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // 隐藏没有匹配图标的分类
+            categories.forEach(category => {
+                const visibleItems = category.querySelectorAll('.icon-item[style*="display: flex"]');
+                if (visibleItems.length === 0) {
+                    category.style.display = 'none';
+                }
+            });
+        });
+
+        // 复制图标代码功能
+        const copyMessage = document.getElementById('copy-message');
+
+        iconItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const iconCode = this.getAttribute('data-code');
+                const iconHtml = `<i class="fa ${iconCode}"></i>`;
+
+                // 复制到剪贴板
+                navigator.clipboard.writeText(iconHtml).then(() => {
+                    // 显示复制成功消息
+                    copyMessage.classList.add('show');
+                    setTimeout(() => {
+                        copyMessage.classList.remove('show');
+                    }, 2000);
+                }).catch(err => {
+                    console.error('复制失败:', err);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

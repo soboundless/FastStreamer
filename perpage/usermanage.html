@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>用户管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1,
+            maximum-scale=1">
+    <link rel="stylesheet" href="../lib/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../css/public.css" media="all">
+    <!-- <link rel="stylesheet" href="../lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all"> -->
+    <style>
+        .layui-container {
+            padding: 0;
+            width: 100%;
+        }
+
+        .org-tree {
+            height: calc(100vh - 80px);
+            overflow-y: auto;
+            border-right: 1px solid #e6e6e6;
+            padding: 10px;
+        }
+
+        .user-table {
+            height: calc(100vh - 80px);
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .layui-tree-entry {
+            cursor: pointer;
+        }
+
+        .layui-tree-entry:hover {
+            background-color: #f0f0f0;
+        }
+
+        .layui-tree-selected {
+            background-color: rgba(44, 95, 125, 0.1) !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div
+        style="width: 100%; height: 40px; background-color: #ffffff; display: flex; align-items: center; padding-left: 0px; font-size: 16px; color: #2c5f7d; font-family: 'Microsoft YaHei'; font-weight: 500; border-bottom: 1px solid #e6e6e6;">
+        &nbsp;&nbsp;&nbsp;&nbsp;用户管理
+    </div>
+    <div class="layuimini-container">
+        <div class="layuimini-main">
+            <div class="layui-container">
+                <div class="layui-row">
+                    <div class="layui-col-md2">
+                        <div class="org-tree">
+                            <fieldset class="layui-elem-field layui-field-title table-search-fieldset">
+                                <legend>组织结构</legend>
+                                <div id="orgTree"></div>
+                            </fieldset>
+
+                        </div>
+                    </div>
+                    <div class="layui-col-md10">
+                        <div class="user-table">
+                            <fieldset class="table-search-fieldset">
+                                <legend>用户信息</legend>
+                                <div style="margin: 10px 10px 10px 10px">
+                                    <form class="layui-form layui-form-pane" action="javascript:void(0);" lay-filter="searchform">
+                                        <div class="layui-form-item">
+                                            <div class="layui-inline">
+                                                <label class="layui-form-label">关键字</label>
+                                                <div class="layui-input-inline">
+                                                    <input type="text" name="keyword" id="keyword" lay-verify=""
+                                                        class="layui-input">
+                                                </div>
+                                            </div>
+                                            <div class="layui-inline">
+                                                <button type="button" class="layui-btn layui-btn-primary"
+                                                    id="data-search-btn"><i class="layui-icon"></i> 搜
+                                                    索</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </fieldset>
+
+                            <script type="text/html" id="toolbarDemo">
+                                <div class="layui-btn-container">
+                                    <button class="layui-btn layui-btn-sm data-add-btn" lay-event="add"><i class="layui-icon">&#xe61f;</i> 添加用户</button>
+                                </div>
+                            </script>
+                            <table class="layui-hide layui-icon" id="currentTableId" lay-filter="currentTableFilter">
+                            </table>
+                            <script type="text/html" id="currentTableBar">
+                                <a class="layui-btn layui-bg-green layui-btn-xs " lay-event="detail">详情</a>
+                                <a class="layui-btn layui-bg-purple layui-btn-xs " lay-event="update">修改</a>
+                                <a class="layui-btn layui-bg-orange layui-btn-xs" lay-event="resetpwd">重置密码</a>
+                                <a class="layui-btn layui-bg-red layui-btn-xs" lay-event="delete">删除</a>                 
+                            </script>
+                            <script type="text/html" id="superAdminTpl">
+                                {{# if(d.superadmin == 0){ }}
+                                    <span class="layui-badge layui-bg-blue">普通用户</span>
+                                {{# } else if(d.superadmin == 1){ }}
+                                    <span class="layui-badge layui-bg-green">管理员</span>
+                                {{# } else if(d.superadmin == 2){ }}
+                                    <span class="layui-badge layui-bg-orange">访客用户</span>
+                                {{# } else { }}
+                                    <span class="layui-badge layui-bg-gray">未知</span>
+                                {{# } }}
+                            </script>
+                            <script type="text/html" id="freezeTpl">
+                                {{# if(d.freeze == 1){ }}
+                                    <span class="layui-badge layui-bg-red">已冻结</span>
+                                {{# } else { }}
+                                    <span class="layui-badge layui-bg-blue">正常</span>
+                                {{# } }}
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../lib/layui/layui.js" charset="utf-8"></script>
+    <script src="../js/mymodule.js" charset="utf-8"></script>
+    <script src="../js/xlsx.full.min.js" charset="utf-8"></script>
+
+    <script>
+        layui.use(['form', 'table', 'tree', 'layer'], function () {
+            var $ = layui.jquery,
+                form = layui.form,
+                table = layui.table,
+                tree = layui.tree,
+                layer = layui.layer;
+
+            var currentOrgCode = '';
+
+            function buildTreeData(data, parentBm) {
+                var result = [];
+                var children = data.filter(function (item) {
+                    return item.parent_bm === parentBm;
+                });
+                children.sort(function (a, b) {
+                    return (a.rowno || 0) - (b.rowno || 0);
+                });
+                $.each(children, function (index, item) {
+                    var node = {
+                        id: item.xzbm,
+                        title: item.xzmc,
+                        spread: item.rank === 1
+                    };
+                    var subChildren = buildTreeData(data, item.xzbm);
+                    if (subChildren.length > 0) {
+                        node.children = subChildren;
+                    }
+                    result.push(node);
+                });
+                return result;
+            }
+
+            function buildTreeFromData(data) {
+                var result = [];
+                var rootNodes = data.filter(function (item) {
+                    return item.rank === 1;
+                });
+                rootNodes.sort(function (a, b) {
+                    return (a.rowno || 0) - (b.rowno || 0);
+                });
+                $.each(rootNodes, function (index, item) {
+                    var node = {
+                        id: item.xzbm,
+                        title: item.xzmc,
+                        spread: true
+                    };
+                    var subChildren = buildTreeData(data, item.xzbm);
+                    if (subChildren.length > 0) {
+                        node.children = subChildren;
+                    }
+                    result.push(node);
+                });
+                return result;
+            }
+
+            $.ajax({
+                url: '../../../api/gaorg_all',
+                type: 'get',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                    ///console.log(result);
+                    if (result.code === 0) {
+                        var treeData = buildTreeFromData(result.data);
+
+                        tree.render({
+                            elem: '#orgTree',
+                            data: treeData,
+                            onlyIconControl: true,
+                            click: function (obj) {
+                                $('#orgTree .layui-tree-entry').removeClass('layui-tree-selected');
+                                $(obj.elem).find('.layui-tree-entry').addClass('layui-tree-selected');
+                                currentOrgCode = obj.data.id;
+                                ///console.log('选中组织:', obj.data.title, '编码:', currentOrgCode);
+                                loadUserData(currentOrgCode);
+                            }
+                        });
+
+                        if (treeData.length > 0) {
+                            currentOrgCode = treeData[0].id;
+                            loadUserData(currentOrgCode);
+                        }
+                    };
+                }
+            });
+
+            function loadUserData(orgCode) {
+                var searchData = form.val("searchform");
+                searchData.xzbm = orgCode;
+                table.reload('currentTableId', {
+                    where: searchData,
+                    page: { curr: 1 }
+                });
+            }
+
+            var tablecols = [
+                //{ type: "checkbox", width: 50 },
+                { field: 'rownumber', width: 60, title: '序号' },
+                { field: 'userid', width: 120, title: '用户ID' },
+                { field: 'username', width: 120, title: '用户名' },
+                { field: 'holderid', width: 180, title: '身份证' },
+                { field: 'xzmc', width: 180, title: '行政区划' },
+                { field: 'bmmc', width: 150, title: '部门名称' },
+                { field: 'smsphone', width: 130, title: '手机号码' },
+                { field: 'superadmin', width: 100, title: '用户类型', templet: '#superAdminTpl' },
+                { field: 'freeze', width: 100, title: '账号状态', templet: '#freezeTpl' },
+                { field: 'expire', width: 120, title: '有效期限' },
+                { fixed: 'right', title: '操作', minWidth: 180, toolbar: '#currentTableBar', align: "center" }
+            ];
+
+            var datatable = table.render({
+                elem: '#currentTableId',
+                url: '../../api/getusetdata',
+                toolbar: "#toolbarDemo",
+                defaultToolbar: ['filter', 'print', {
+                    title: '导出数据',
+                    layEvent: 'export_out',
+                    icon: 'layui-icon-export',
+                }],
+                where: form.val("searchform"),
+                even: true,
+                size: 'lg',
+                cols: [tablecols],
+                limits: [10, 20, 50, 100],
+                limit: 20,
+                page: true,
+                skin: 'row'
+            });
+
+            layui.$('#data-search-btn').on('click', function () {
+                var data = form.val("searchform");
+                data.xzbm = currentOrgCode;
+                var result = JSON.stringify(data);
+                ///console.log(result);
+                table.reload('currentTableId', { page: { curr: 1 }, where: data }, 'data');
+                return false;
+            });
+
+            table.on('toolbar(currentTableFilter)', function (obj) {
+                if (obj.event === 'add') {
+                    var index = layer.open({
+                        title: '添加用户',
+                        type: 2,
+                        shade: 0.2,
+                        maxmin: false,
+                        shadeClose: false,
+                        area: ['1200px', '720px'],
+                        content: './userdetail.html?edittype=insert',
+                        success: function (layero, index) {
+                            var iframe = window['layui-layer-iframe' + index];
+                            iframe.child({ bmbm: currentOrgCode, type: 'insert' });
+                        },
+                        end: function () {
+                        }
+                    })
+                } else if (obj.event === 'export_out') {
+                    var searchData = form.val("searchform");
+                    searchData.xzbm = currentOrgCode;
+                    exportExcel(tablecols, '../../api/getusetdata', searchData, 10000, '用户管理数据', '用户管理数据');
+                }
+            });
+
+            layui.$(document).on('table_reload', function (even, data) {
+                if (data == 'shuaxin') {
+                    var searchData = form.val("searchform");
+                    searchData.xzbm = currentOrgCode;
+                    table.reload('currentTableId', { where: searchData }, 'data');
+                }
+            });
+
+            table.on('tool(currentTableFilter)', function (obj) {
+                if (obj.event === 'delete') {
+                    layer.confirm('确定要删除该用户吗？', function (index) {
+                        var deleteData = {
+                            userid: obj.data.userid,
+                            edittype: 'delete'
+                        };
+                        var loadIndex = layer.load(2);
+                        $.post('../../api/edituserdata', JSON.stringify(deleteData), function (res) {
+                            layer.close(loadIndex);
+                            if (res.code === 0) {
+                                layer.msg("删除成功，" + res.msg, {
+                                    time: 1200
+                                }, function () {
+                                    var searchData = form.val("searchform");
+                                    searchData.xzbm = currentOrgCode;
+                                    table.reload('currentTableId', { where: searchData }, 'data');
+                                })
+                            } else {
+                                layer.msg(res.msg, function () { });
+                            }
+                        }, 'json')
+                    });
+                }
+                else if (obj.event === 'detail') {
+                    var index = layer.open({
+                        title: '用户信息详情',
+                        type: 2,
+                        shade: 0.2,
+                        maxmin: true,
+                        shadeClose: true,
+                        area: ['1200px', '720px'],
+                        content: './userdetail.html',
+                        success: function (layero, index) {
+                            var iframe = window['layui-layer-iframe' + index];
+                            iframe.child({ userid: obj.data.userid, type: 'detail' });
+                        },
+                        end: function () { }
+                    })
+                }
+                else if (obj.event === 'update') {
+                    var index = layer.open({
+                        title: '修改用户信息',
+                        type: 2,
+                        shade: 0.2,
+                        maxmin: true,
+                        shadeClose: true,
+                        area: ['1200px', '720px'],
+                        content: './userdetail.html?edittype=update',
+                        success: function (layero, index) {
+                            var iframe = window['layui-layer-iframe' + index];
+                            iframe.child({ userid: obj.data.userid, type: 'update' });
+                        },
+                        end: function () {
+                        }
+                    })
+                }
+                else if (obj.event === 'resetpwd') {
+                    layer.confirm('确定要重置该用户的密码吗？', function (index) {
+                        var resetData = {
+                            userid: obj.data.userid,
+                            edittype: 'reset'
+                        };
+                        var loadIndex = layer.load(2);
+                        $.post('../../api/changepassword', JSON.stringify(resetData), function (res) {
+                            layer.close(loadIndex);
+                            if (res.code === 0) {
+                                layer.open({
+                                    title: '密码重置成功',
+                                    type: 1,
+                                    area: ['400px', '200px'],
+                                    shadeClose: false,
+                                    content: '<div style="padding: 20px;">' +
+                                        '<div style="margin-bottom: 15px;">密码重置成功！新密码为：<span style="color: #ff6600; font-weight: bold; font-size: 18px;">' + res.newpassword + '</span> <button id="copyResetPasswordBtn" style="margin-left: 10px; padding: 2px 8px; background-color: #009688; color: white; border: none; border-radius: 3px; cursor: pointer;">复制</button></div>' +
+                                        '</div>',
+                                    btn: ['确定'],
+                                    yes: function (index) {
+                                        layer.closeAll();
+                                    },
+                                    success: function(layero) {
+                                        layero.find('#copyResetPasswordBtn').on('click', function() {
+                                            var tempInput = document.createElement('input');
+                                            tempInput.value = res.newpassword;
+                                            document.body.appendChild(tempInput);
+                                            tempInput.select();
+                                            document.execCommand('copy');
+                                            document.body.removeChild(tempInput);
+                                            layer.msg('密码已复制到剪贴板', {icon: 1, time: 1000});
+                                        });
+                                    }
+                                });
+                            } else {
+                                layer.msg(res.msg, { icon: 2 });
+                            }
+                        }, 'json');
+                    });
+                }
+            });
+
+            table.on('checkbox(currentTableFilter)', function (obj) {
+                ///console.log(obj)
+            });
+        });
+    </script>
+</body>
+
+</html>

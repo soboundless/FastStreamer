@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font Awesome 4.7.0 图标库</title>
+    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c5f7d;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+        
+        .intro {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .intro h2 {
+            color: #2c5f7d;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .intro p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .icon-item {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .icon-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .icon {
+            font-size: 48px;
+            color: #2c5f7d;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .icon-name {
+            font-size: 14px;
+            color: #333;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .icon-code {
+            font-size: 12px;
+            color: #666;
+            font-family: 'Courier New', monospace;
+            background: #f8f9fa;
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        
+        .category {
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        
+        .category h2 {
+            color: #2c5f7d;
+            font-size: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #2c5f7d;
+        }
+        
+        @media (max-width: 768px) {
+            .icon-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .icon {
+                font-size: 36px;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Font Awesome 4.7.0 图标库</h1>
+        
+        <div class="intro">
+            <h2>关于 Font Awesome</h2>
+            <p>Font Awesome 是一套流行的图标字体库，包含了大量常用图标，可通过 CSS 类名直接使用。</p>
+            <p>本页面展示了 Font Awesome 4.7.0 版本的常用图标，点击图标可复制使用代码。</p>
+            <p>使用方法：在 HTML 中添加 <code>&lt;i class="fa fa-icon-name"&gt;&lt;/i&gt;</code> 即可显示对应图标。</p>
+        </div>
+        
+        <!-- 品牌图标 -->
+        <div class="category">
+            <h2>品牌图标 (Brands)</h2>
+            <div class="icon-grid">
+                <div class="icon-item">
+                    <i class="fa fa-android icon"></i>
+                    <div class="icon-name">Android</div>
+                    <div class="icon-code">fa-android</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-apple icon"></i>
+                    <div class="icon-name">Apple</div>
+                    <div class="icon-code">fa-apple</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-windows icon"></i>
+                    <div class="icon-name">Windows</div>
+                    <div class="icon-code">fa-windows</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-linux icon"></i>
+                    <div class="icon-name">Linux</div>
+                    <div class="icon-code">fa-linux</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-google icon"></i>
+                    <div class="icon-name">Google</div>
+                    <div class="icon-code">fa-google</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-facebook icon"></i>
+                    <div class="icon-name">Facebook</div>
+                    <div class="icon-code">fa-facebook</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-twitter icon"></i>
+                    <div class="icon-name">Twitter</div>
+                    <div class="icon-code">fa-twitter</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-github icon"></i>
+                    <div class="icon-name">GitHub</div>
+                    <div class="icon-code">fa-github</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 网页图标 -->
+        <div class="category">
+            <h2>网页图标 (Web)</h2>
+            <div class="icon-grid">
+                <div class="icon-item">
+                    <i class="fa fa-home icon"></i>
+                    <div class="icon-name">Home</div>
+                    <div class="icon-code">fa-home</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-globe icon"></i>
+                    <div class="icon-name">Globe</div>
+                    <div class="icon-code">fa-globe</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-link icon"></i>
+                    <div class="icon-name">Link</div>
+                    <div class="icon-code">fa-link</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-bookmark icon"></i>
+                    <div class="icon-name">Bookmark</div>
+                    <div class="icon-code">fa-bookmark</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-rss icon"></i>
+                    <div class="icon-name">RSS</div>
+                    <div class="icon-code">fa-rss</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-at icon"></i>
+                    <div class="icon-name">At</div>
+                    <div class="icon-code">fa-at</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-envelope icon"></i>
+                    <div class="icon-name">Envelope</div>
+                    <div class="icon-code">fa-envelope</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-paper-plane icon"></i>
+                    <div class="icon-name">Paper Plane</div>
+                    <div class="icon-code">fa-paper-plane</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 编辑图标 -->
+        <div class="category">
+            <h2>编辑图标 (Editing)</h2>
+            <div class="icon-grid">
+                <div class="icon-item">
+                    <i class="fa fa-pencil icon"></i>
+                    <div class="icon-name">Pencil</div>
+                    <div class="icon-code">fa-pencil</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-pencil-square-o icon"></i>
+                    <div class="icon-name">Pencil Square</div>
+                    <div class="icon-code">fa-pencil-square-o</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-file-text icon"></i>
+                    <div class="icon-name">File Text</div>
+                    <div class="icon-code">fa-file-text</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-file-code-o icon"></i>
+                    <div class="icon-name">File Code</div>
+                    <div class="icon-code">fa-file-code-o</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-copy icon"></i>
+                    <div class="icon-name">Copy</div>
+                    <div class="icon-code">fa-copy</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-cut icon"></i>
+                    <div class="icon-name">Cut</div>
+                    <div class="icon-code">fa-cut</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-paste icon"></i>
+                    <div class="icon-name">Paste</div>
+                    <div class="icon-code">fa-paste</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-eraser icon"></i>
+                    <div class="icon-name">Eraser</div>
+                    <div class="icon-code">fa-eraser</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 导航图标 -->
+        <div class="category">
+            <h2>导航图标 (Navigation)</h2>
+            <div class="icon-grid">
+                <div class="icon-item">
+                    <i class="fa fa-arrow-up icon"></i>
+                    <div class="icon-name">Arrow Up</div>
+                    <div class="icon-code">fa-arrow-up</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-arrow-down icon"></i>
+                    <div class="icon-name">Arrow Down</div>
+                    <div class="icon-code">fa-arrow-down</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-arrow-left icon"></i>
+                    <div class="icon-name">Arrow Left</div>
+                    <div class="icon-code">fa-arrow-left</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-arrow-right icon"></i>
+                    <div class="icon-name">Arrow Right</div>
+                    <div class="icon-code">fa-arrow-right</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-chevron-up icon"></i>
+                    <div class="icon-name">Chevron Up</div>
+                    <div class="icon-code">fa-chevron-up</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-chevron-down icon"></i>
+                    <div class="icon-name">Chevron Down</div>
+                    <div class="icon-code">fa-chevron-down</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-chevron-left icon"></i>
+                    <div class="icon-name">Chevron Left</div>
+                    <div class="icon-code">fa-chevron-left</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-chevron-right icon"></i>
+                    <div class="icon-name">Chevron Right</div>
+                    <div class="icon-code">fa-chevron-right</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 媒体图标 -->
+        <div class="category">
+            <h2>媒体图标 (Media)</h2>
+            <div class="icon-grid">
+                <div class="icon-item">
+                    <i class="fa fa-play icon"></i>
+                    <div class="icon-name">Play</div>
+                    <div class="icon-code">fa-play</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-pause icon"></i>
+                    <div class="icon-name">Pause</div>
+                    <div class="icon-code">fa-pause</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-stop icon"></i>
+                    <div class="icon-name">Stop</div>
+                    <div class="icon-code">fa-stop</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-volume-up icon"></i>
+                    <div class="icon-name">Volume Up</div>
+                    <div class="icon-code">fa-volume-up</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-volume-down icon"></i>
+                    <div class="icon-name">Volume Down</div>
+                    <div class="icon-code">fa-volume-down</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-volume-off icon"></i>
+                    <div class="icon-name">Volume Off</div>
+                    <div class="icon-code">fa-volume-off</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-headphones icon"></i>
+                    <div class="icon-name">Headphones</div>
+                    <div class="icon-code">fa-headphones</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-music icon"></i>
+                    <div class="icon-name">Music</div>
+                    <div class="icon-code">fa-music</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 文件图标 -->
+        <div class="category">
+            <h2>文件图标 (Files)</h2>
+            <div class="icon-grid">
+                <div class="icon-item">
+                    <i class="fa fa-file icon"></i>
+                    <div class="icon-name">File</div>
+                    <div class="icon-code">fa-file</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-file-o icon"></i>
+                    <div class="icon-name">File O</div>
+                    <div class="icon-code">fa-file-o</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-file-text-o icon"></i>
+                    <div class="icon-name">File Text O</div>
+                    <div class="icon-code">fa-file-text-o</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-file-excel-o icon"></i>
+                    <div class="icon-name">File Excel</div>
+                    <div class="icon-code">fa-file-excel-o</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-file-word-o icon"></i>
+                    <div class="icon-name">File Word</div>
+                    <div class="icon-code">fa-file-word-o</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-file-powerpoint-o icon"></i>
+                    <div class="icon-name">File PowerPoint</div>
+                    <div class="icon-code">fa-file-powerpoint-o</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-file-pdf-o icon"></i>
+                    <div class="icon-name">File PDF</div>
+                    <div class="icon-code">fa-file-pdf-o</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-file-image-o icon"></i>
+                    <div class="icon-name">File Image</div>
+                    <div class="icon-code">fa-file-image-o</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 表单图标 -->
+        <div class="category">
+            <h2>表单图标 (Forms)</h2>
+            <div class="icon-grid">
+                <div class="icon-item">
+                    <i class="fa fa-check icon"></i>
+                    <div class="icon-name">Check</div>
+                    <div class="icon-code">fa-check</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-check-circle icon"></i>
+                    <div class="icon-name">Check Circle</div>
+                    <div class="icon-code">fa-check-circle</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-times icon"></i>
+                    <div class="icon-name">Times</div>
+                    <div class="icon-code">fa-times</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-times-circle icon"></i>
+                    <div class="icon-name">Times Circle</div>
+                    <div class="icon-code">fa-times-circle</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-exclamation icon"></i>
+                    <div class="icon-name">Exclamation</div>
+                    <div class="icon-code">fa-exclamation</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-exclamation-circle icon"></i>
+                    <div class="icon-name">Exclamation Circle</div>
+                    <div class="icon-code">fa-exclamation-circle</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-question icon"></i>
+                    <div class="icon-name">Question</div>
+                    <div class="icon-code">fa-question</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-question-circle icon"></i>
+                    <div class="icon-name">Question Circle</div>
+                    <div class="icon-code">fa-question-circle</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 用户图标 -->
+        <div class="category">
+            <h2>用户图标 (Users)</h2>
+            <div class="icon-grid">
+                <div class="icon-item">
+                    <i class="fa fa-user icon"></i>
+                    <div class="icon-name">User</div>
+                    <div class="icon-code">fa-user</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-user-o icon"></i>
+                    <div class="icon-name">User O</div>
+                    <div class="icon-code">fa-user-o</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-users icon"></i>
+                    <div class="icon-name">Users</div>
+                    <div class="icon-code">fa-users</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-user-plus icon"></i>
+                    <div class="icon-name">User Plus</div>
+                    <div class="icon-code">fa-user-plus</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-user-times icon"></i>
+                    <div class="icon-name">User Times</div>
+                    <div class="icon-code">fa-user-times</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-user-circle icon"></i>
+                    <div class="icon-name">User Circle</div>
+                    <div class="icon-code">fa-user-circle</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-user-circle-o icon"></i>
+                    <div class="icon-name">User Circle O</div>
+                    <div class="icon-code">fa-user-circle-o</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-male icon"></i>
+                    <div class="icon-name">Male</div>
+                    <div class="icon-code">fa-male</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 商业图标 -->
+        <div class="category">
+            <h2>商业图标 (Business)</h2>
+            <div class="icon-grid">
+                <div class="icon-item">
+                    <i class="fa fa-briefcase icon"></i>
+                    <div class="icon-name">Briefcase</div>
+                    <div class="icon-code">fa-briefcase</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-bank icon"></i>
+                    <div class="icon-name">Bank</div>
+                    <div class="icon-code">fa-bank</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-money icon"></i>
+                    <div class="icon-name">Money</div>
+                    <div class="icon-code">fa-money</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-credit-card icon"></i>
+                    <div class="icon-name">Credit Card</div>
+                    <div class="icon-code">fa-credit-card</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-shopping-cart icon"></i>
+                    <div class="icon-name">Shopping Cart</div>
+                    <div class="icon-code">fa-shopping-cart</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-shopping-bag icon"></i>
+                    <div class="icon-name">Shopping Bag</div>
+                    <div class="icon-code">fa-shopping-bag</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-shopping-basket icon"></i>
+                    <div class="icon-name">Shopping Basket</div>
+                    <div class="icon-code">fa-shopping-basket</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-truck icon"></i>
+                    <div class="icon-name">Truck</div>
+                    <div class="icon-code">fa-truck</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 工具图标 -->
+        <div class="category">
+            <h2>工具图标 (Tools)</h2>
+            <div class="icon-grid">
+                <div class="icon-item">
+                    <i class="fa fa-wrench icon"></i>
+                    <div class="icon-name">Wrench</div>
+                    <div class="icon-code">fa-wrench</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-cog icon"></i>
+                    <div class="icon-name">Cog</div>
+                    <div class="icon-code">fa-cog</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-sliders icon"></i>
+                    <div class="icon-name">Sliders</div>
+                    <div class="icon-code">fa-sliders</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-magic icon"></i>
+                    <div class="icon-name">Magic</div>
+                    <div class="icon-code">fa-magic</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-paint-brush icon"></i>
+                    <div class="icon-name">Paint Brush</div>
+                    <div class="icon-code">fa-paint-brush</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-scissors icon"></i>
+                    <div class="icon-name">Scissors</div>
+                    <div class="icon-code">fa-scissors</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-search icon"></i>
+                    <div class="icon-name">Search</div>
+                    <div class="icon-code">fa-search</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-search-plus icon"></i>
+                    <div class="icon-name">Search Plus</div>
+                    <div class="icon-code">fa-search-plus</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 安全图标 -->
+        <div class="category">
+            <h2>安全图标 (Security)</h2>
+            <div class="icon-grid">
+                <div class="icon-item">
+                    <i class="fa fa-lock icon"></i>
+                    <div class="icon-name">Lock</div>
+                    <div class="icon-code">fa-lock</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-unlock icon"></i>
+                    <div class="icon-name">Unlock</div>
+                    <div class="icon-code">fa-unlock</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-lock icon"></i>
+                    <div class="icon-name">Lock</div>
+                    <div class="icon-code">fa-lock</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-shield icon"></i>
+                    <div class="icon-name">Shield</div>
+                    <div class="icon-code">fa-shield</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-user-secret icon"></i>
+                    <div class="icon-name">User Secret</div>
+                    <div class="icon-code">fa-user-secret</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-eye icon"></i>
+                    <div class="icon-name">Eye</div>
+                    <div class="icon-code">fa-eye</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-eye-slash icon"></i>
+                    <div class="icon-name">Eye Slash</div>
+                    <div class="icon-code">fa-eye-slash</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-key icon"></i>
+                    <div class="icon-name">Key</div>
+                    <div class="icon-code">fa-key</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 图表图标 -->
+        <div class="category">
+            <h2>图表图标 (Charts)</h2>
+            <div class="icon-grid">
+                <div class="icon-item">
+                    <i class="fa fa-bar-chart icon"></i>
+                    <div class="icon-name">Bar Chart</div>
+                    <div class="icon-code">fa-bar-chart</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-bar-chart-o icon"></i>
+                    <div class="icon-name">Bar Chart O</div>
+                    <div class="icon-code">fa-bar-chart-o</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-line-chart icon"></i>
+                    <div class="icon-name">Line Chart</div>
+                    <div class="icon-code">fa-line-chart</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-pie-chart icon"></i>
+                    <div class="icon-name">Pie Chart</div>
+                    <div class="icon-code">fa-pie-chart</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-area-chart icon"></i>
+                    <div class="icon-name">Area Chart</div>
+                    <div class="icon-code">fa-area-chart</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-line-chart icon"></i>
+                    <div class="icon-name">Line Chart</div>
+                    <div class="icon-code">fa-line-chart</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-pie-chart icon"></i>
+                    <div class="icon-name">Pie Chart</div>
+                    <div class="icon-code">fa-pie-chart</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-area-chart icon"></i>
+                    <div class="icon-name">Area Chart</div>
+                    <div class="icon-code">fa-area-chart</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 日期时间图标 -->
+        <div class="category">
+            <h2>日期时间图标 (Date/Time)</h2>
+            <div class="icon-grid">
+                <div class="icon-item">
+                    <i class="fa fa-calendar icon"></i>
+                    <div class="icon-name">Calendar</div>
+                    <div class="icon-code">fa-calendar</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-calendar-o icon"></i>
+                    <div class="icon-name">Calendar O</div>
+                    <div class="icon-code">fa-calendar-o</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-clock-o icon"></i>
+                    <div class="icon-name">Clock O</div>
+                    <div class="icon-code">fa-clock-o</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-hourglass icon"></i>
+                    <div class="icon-name">Hourglass</div>
+                    <div class="icon-code">fa-hourglass</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-hourglass-start icon"></i>
+                    <div class="icon-name">Hourglass Start</div>
+                    <div class="icon-code">fa-hourglass-start</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-hourglass-half icon"></i>
+                    <div class="icon-name">Hourglass Half</div>
+                    <div class="icon-code">fa-hourglass-half</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-hourglass-end icon"></i>
+                    <div class="icon-name">Hourglass End</div>
+                    <div class="icon-code">fa-hourglass-end</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-calendar-check-o icon"></i>
+                    <div class="icon-name">Calendar Check</div>
+                    <div class="icon-code">fa-calendar-check-o</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 设备图标 -->
+        <div class="category">
+            <h2>设备图标 (Devices)</h2>
+            <div class="icon-grid">
+                <div class="icon-item">
+                    <i class="fa fa-desktop icon"></i>
+                    <div class="icon-name">Desktop</div>
+                    <div class="icon-code">fa-desktop</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-laptop icon"></i>
+                    <div class="icon-name">Laptop</div>
+                    <div class="icon-code">fa-laptop</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-tablet icon"></i>
+                    <div class="icon-name">Tablet</div>
+                    <div class="icon-code">fa-tablet</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-mobile icon"></i>
+                    <div class="icon-name">Mobile</div>
+                    <div class="icon-code">fa-mobile</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-mobile-phone icon"></i>
+                    <div class="icon-name">Mobile Phone</div>
+                    <div class="icon-code">fa-mobile-phone</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-tv icon"></i>
+                    <div class="icon-name">TV</div>
+                    <div class="icon-code">fa-tv</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-camera icon"></i>
+                    <div class="icon-name">Camera</div>
+                    <div class="icon-code">fa-camera</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-video-camera icon"></i>
+                    <div class="icon-name">Video Camera</div>
+                    <div class="icon-code">fa-video-camera</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 方向图标 -->
+        <div class="category">
+            <h2>方向图标 (Directions)</h2>
+            <div class="icon-grid">
+                <div class="icon-item">
+                    <i class="fa fa-arrows icon"></i>
+                    <div class="icon-name">Arrows</div>
+                    <div class="icon-code">fa-arrows</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-arrows-h icon"></i>
+                    <div class="icon-name">Arrows H</div>
+                    <div class="icon-code">fa-arrows-h</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-arrows-v icon"></i>
+                    <div class="icon-name">Arrows V</div>
+                    <div class="icon-code">fa-arrows-v</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-arrow-circle-up icon"></i>
+                    <div class="icon-name">Arrow Circle Up</div>
+                    <div class="icon-code">fa-arrow-circle-up</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-arrow-circle-down icon"></i>
+                    <div class="icon-name">Arrow Circle Down</div>
+                    <div class="icon-code">fa-arrow-circle-down</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-arrow-circle-left icon"></i>
+                    <div class="icon-name">Arrow Circle Left</div>
+                    <div class="icon-code">fa-arrow-circle-left</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-arrow-circle-right icon"></i>
+                    <div class="icon-name">Arrow Circle Right</div>
+                    <div class="icon-code">fa-arrow-circle-right</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-long-arrow-up icon"></i>
+                    <div class="icon-name">Long Arrow Up</div>
+                    <div class="icon-code">fa-long-arrow-up</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 表情图标 -->
+        <div class="category">
+            <h2>表情图标 (Emotions)</h2>
+            <div class="icon-grid">
+                <div class="icon-item">
+                    <i class="fa fa-smile-o icon"></i>
+                    <div class="icon-name">Smile O</div>
+                    <div class="icon-code">fa-smile-o</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-frown-o icon"></i>
+                    <div class="icon-name">Frown O</div>
+                    <div class="icon-code">fa-frown-o</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-meh-o icon"></i>
+                    <div class="icon-name">Meh O</div>
+                    <div class="icon-code">fa-meh-o</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-laugh-o icon"></i>
+                    <div class="icon-name">Laugh O</div>
+                    <div class="icon-code">fa-laugh-o</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-grin-o icon"></i>
+                    <div class="icon-name">Grin O</div>
+                    <div class="icon-code">fa-grin-o</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-sad-tear icon"></i>
+                    <div class="icon-name">Sad Tear</div>
+                    <div class="icon-code">fa-sad-tear</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-surprise-o icon"></i>
+                    <div class="icon-name">Surprise O</div>
+                    <div class="icon-code">fa-surprise-o</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-confused-o icon"></i>
+                    <div class="icon-name">Confused O</div>
+                    <div class="icon-code">fa-confused-o</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 手形图标 -->
+        <div class="category">
+            <h2>手形图标 (Hands)</h2>
+            <div class="icon-grid">
+                <div class="icon-item">
+                    <i class="fa fa-hand-o-right icon"></i>
+                    <div class="icon-name">Hand O Right</div>
+                    <div class="icon-code">fa-hand-o-right</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-hand-o-left icon"></i>
+                    <div class="icon-name">Hand O Left</div>
+                    <div class="icon-code">fa-hand-o-left</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-hand-o-up icon"></i>
+                    <div class="icon-name">Hand O Up</div>
+                    <div class="icon-code">fa-hand-o-up</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-hand-o-down icon"></i>
+                    <div class="icon-name">Hand O Down</div>
+                    <div class="icon-code">fa-hand-o-down</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-thumbs-up icon"></i>
+                    <div class="icon-name">Thumbs Up</div>
+                    <div class="icon-code">fa-thumbs-up</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-thumbs-down icon"></i>
+                    <div class="icon-name">Thumbs Down</div>
+                    <div class="icon-code">fa-thumbs-down</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-hand-rock-o icon"></i>
+                    <div class="icon-name">Hand Rock O</div>
+                    <div class="icon-code">fa-hand-rock-o</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-hand-paper-o icon"></i>
+                    <div class="icon-name">Hand Paper O</div>
+                    <div class="icon-code">fa-hand-paper-o</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 医疗图标 -->
+        <div class="category">
+            <h2>医疗图标 (Medical)</h2>
+            <div class="icon-grid">
+                <div class="icon-item">
+                    <i class="fa fa-medkit icon"></i>
+                    <div class="icon-name">Medkit</div>
+                    <div class="icon-code">fa-medkit</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-heartbeat icon"></i>
+                    <div class="icon-name">Heartbeat</div>
+                    <div class="icon-code">fa-heartbeat</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-stethoscope icon"></i>
+                    <div class="icon-name">Stethoscope</div>
+                    <div class="icon-code">fa-stethoscope</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-user-md icon"></i>
+                    <div class="icon-name">User MD</div>
+                    <div class="icon-code">fa-user-md</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-heart icon"></i>
+                    <div class="icon-name">Heart</div>
+                    <div class="icon-code">fa-heart</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-heart-o icon"></i>
+                    <div class="icon-name">Heart O</div>
+                    <div class="icon-code">fa-heart-o</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-ambulance icon"></i>
+                    <div class="icon-name">Ambulance</div>
+                    <div class="icon-code">fa-ambulance</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-hospital-o icon"></i>
+                    <div class="icon-name">Hospital O</div>
+                    <div class="icon-code">fa-hospital-o</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 支付图标 -->
+        <div class="category">
+            <h2>支付图标 (Payment)</h2>
+            <div class="icon-grid">
+                <div class="icon-item">
+                    <i class="fa fa-credit-card icon"></i>
+                    <div class="icon-name">Credit Card</div>
+                    <div class="icon-code">fa-credit-card</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-cc-visa icon"></i>
+                    <div class="icon-name">CC Visa</div>
+                    <div class="icon-code">fa-cc-visa</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-cc-mastercard icon"></i>
+                    <div class="icon-name">CC Mastercard</div>
+                    <div class="icon-code">fa-cc-mastercard</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-cc-amex icon"></i>
+                    <div class="icon-name">CC Amex</div>
+                    <div class="icon-code">fa-cc-amex</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-cc-paypal icon"></i>
+                    <div class="icon-name">CC PayPal</div>
+                    <div class="icon-code">fa-cc-paypal</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-cc-discover icon"></i>
+                    <div class="icon-name">CC Discover</div>
+                    <div class="icon-code">fa-cc-discover</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-cc-visa icon"></i>
+                    <div class="icon-name">CC Visa</div>
+                    <div class="icon-code">fa-cc-visa</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-credit-card-alt icon"></i>
+                    <div class="icon-name">Credit Card Alt</div>
+                    <div class="icon-code">fa-credit-card-alt</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 社会图标 -->
+        <div class="category">
+            <h2>社会图标 (Social)</h2>
+            <div class="icon-grid">
+                <div class="icon-item">
+                    <i class="fa fa-weixin icon"></i>
+                    <div class="icon-name">Weixin</div>
+                    <div class="icon-code">fa-weixin</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-weibo icon"></i>
+                    <div class="icon-name">Weibo</div>
+                    <div class="icon-code">fa-weibo</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-qq icon"></i>
+                    <div class="icon-name">QQ</div>
+                    <div class="icon-code">fa-qq</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-twitter icon"></i>
+                    <div class="icon-name">Twitter</div>
+                    <div class="icon-code">fa-twitter</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-facebook icon"></i>
+                    <div class="icon-name">Facebook</div>
+                    <div class="icon-code">fa-facebook</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-instagram icon"></i>
+                    <div class="icon-name">Instagram</div>
+                    <div class="icon-code">fa-instagram</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-linkedin icon"></i>
+                    <div class="icon-name">LinkedIn</div>
+                    <div class="icon-code">fa-linkedin</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-youtube-play icon"></i>
+                    <div class="icon-name">YouTube Play</div>
+                    <div class="icon-code">fa-youtube-play</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 交通图标 -->
+        <div class="category">
+            <h2>交通图标 (Transportation)</h2>
+            <div class="icon-grid">
+                <div class="icon-item">
+                    <i class="fa fa-car icon"></i>
+                    <div class="icon-name">Car</div>
+                    <div class="icon-code">fa-car</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-truck icon"></i>
+                    <div class="icon-name">Truck</div>
+                    <div class="icon-code">fa-truck</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-plane icon"></i>
+                    <div class="icon-name">Plane</div>
+                    <div class="icon-code">fa-plane</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-ship icon"></i>
+                    <div class="icon-name">Ship</div>
+                    <div class="icon-code">fa-ship</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-train icon"></i>
+                    <div class="icon-name">Train</div>
+                    <div class="icon-code">fa-train</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-bus icon"></i>
+                    <div class="icon-name">Bus</div>
+                    <div class="icon-code">fa-bus</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-bicycle icon"></i>
+                    <div class="icon-name">Bicycle</div>
+                    <div class="icon-code">fa-bicycle</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-motorcycle icon"></i>
+                    <div class="icon-name">Motorcycle</div>
+                    <div class="icon-code">fa-motorcycle</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 视频图标 -->
+        <div class="category">
+            <h2>视频图标 (Video)</h2>
+            <div class="icon-grid">
+                <div class="icon-item">
+                    <i class="fa fa-play-circle icon"></i>
+                    <div class="icon-name">Play Circle</div>
+                    <div class="icon-code">fa-play-circle</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-play-circle-o icon"></i>
+                    <div class="icon-name">Play Circle O</div>
+                    <div class="icon-code">fa-play-circle-o</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-pause-circle icon"></i>
+                    <div class="icon-name">Pause Circle</div>
+                    <div class="icon-code">fa-pause-circle</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-pause-circle-o icon"></i>
+                    <div class="icon-name">Pause Circle O</div>
+                    <div class="icon-code">fa-pause-circle-o</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-stop-circle icon"></i>
+                    <div class="icon-name">Stop Circle</div>
+                    <div class="icon-code">fa-stop-circle</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-stop-circle-o icon"></i>
+                    <div class="icon-name">Stop Circle O</div>
+                    <div class="icon-code">fa-stop-circle-o</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-youtube icon"></i>
+                    <div class="icon-name">YouTube</div>
+                    <div class="icon-code">fa-youtube</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa fa-youtube-play icon"></i>
+                    <div class="icon-name">YouTube Play</div>
+                    <div class="icon-code">fa-youtube-play</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 复制图标代码功能
+        document.querySelectorAll('.icon-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const iconCode = this.querySelector('.icon-code').textContent;
+                const fullCode = `<i class="fa ${iconCode}"></i>`;
+                
+                navigator.clipboard.writeText(fullCode).then(() => {
+                    // 显示复制成功提示
+                    const originalText = this.querySelector('.icon-code').textContent;
+                    this.querySelector('.icon-code').textContent = '已复制!';
+                    this.querySelector('.icon-code').style.backgroundColor = '#d4edda';
+                    this.querySelector('.icon-code').style.color = '#155724';
+                    
+                    setTimeout(() => {
+                        this.querySelector('.icon-code').textContent = originalText;
+                        this.querySelector('.icon-code').style.backgroundColor = '';
+                        this.querySelector('.icon-code').style.color = '';
+                    }, 2000);
+                }).catch(err => {
+                    console.error('复制失败:', err);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

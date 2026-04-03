@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>公安内部无人机资料</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1,
+            maximum-scale=1">
+    <link rel="stylesheet" href="../lib/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../css/public.css" media="all">
+    <!-- <link rel="stylesheet" href="../lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all"> -->
+</head>
+
+<body>
+    <div
+        style="width: 100%; height: 40px; background-color: #ffffff; display: flex; align-items: center; padding-left: 0px; font-size: 16px; color: #2c5f7d; font-family: 'Microsoft YaHei'; font-weight: 500; border-bottom: 1px solid #e6e6e6;">
+        &nbsp;&nbsp;&nbsp;&nbsp;公安系统无人机资料
+    </div>
+    <div class="layuimini-container">
+        <div class="layuimini-main">
+
+            <fieldset class="table-search-fieldset">
+
+                <legend>查询条件</legend>
+                <div style="margin: 10px 10px 10px 10px">
+                    <form class="layui-form layui-form-pane" action="" lay-filter="searchform">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">行政区划</label>
+                                <div class="layui-input-inline">
+                                    <select name="xzqh" id="xzqh" lay-verify="">
+                                        <option value="">请选择</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label">关键字</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="keyword" id="keyword" lay-verify="" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <button type="button" class="layui-btn
+                                        layui-btn-primary" lay-filter="data-search-btn"><i class="layui-icon"></i> 搜
+                                    索</button>
+                                <button type="reset" class="layui-btn layui-btn-primary"><i
+                                        class="layui-icon layui-icon-refresh"></i>重置</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </fieldset>
+            <script type="text/html" id="toolbarDemo">
+                <div class="layui-btn-container">
+                    {{# var login_data = layui.data('login_data'); if(login_data.superadmin != 2) { }}
+                    <button  class="layui-btn layui-btn-radius  layui-btn-sm" lay-event="add" id="but_applypass"><i class="layui-icon">&#xe61f;</i> 添加</button>
+                    <button class="layui-btn layui-btn-normal layui-btn-radius layui-btn-sm" lay-event="import" id="import"><i class="layui-icon layui-icon-upload-drag"></i> 导入</button>
+                    {{# } }}
+                </div>
+            </script>
+            <table class="layui-hide layui-icon" id="currentTableId" lay-filter="currentTableFilter"></table>
+            <script type="text/html" id="currentTableBar">
+                <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="checkshoufei" id="but_applypass">详情</a>
+                {{# var login_data = layui.data('login_data'); if(login_data.superadmin != 2) { }}
+                <a class="layui-btn   layui-bg-orange layui-btn-xs data-count-edit" lay-event="updateshoufei" id="but_applypass">修改</a>
+                <a class="layui-btn layui-bg-red layui-btn-xs" lay-event="deleteshoufei" id="but_applypass">删除</a>                
+                {{# } }}
+            </script>
+        </div>
+    </div>
+    <script src="../lib/layui/layui.js" charset="utf-8"></script>
+    <script src="../js/mymodule.js" charset="utf-8"></script>
+    <script src="../js/xlsx.full.min.js" charset="utf-8"></script>
+    <!--     <script type="text/html" id="switchTpl">
+        <input type="checkbox" name="sex" value="{{d.status}}" lay-skin="switch" disabled="" lay-text="在用|停用"lay-filter="status" {{d.status=="在用" ? 'checked' : '' }}>
+    </script> -->
+
+    <script>
+        layui.use(['form', 'table', 'laydate'], function () {
+            var $ = layui.jquery,
+                form = layui.form,
+                table = layui.table,
+                laydate = layui.laydate;
+            $.ajax({
+                url: '../../../api/gaorg',
+                type: 'get',
+                data: {},
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                    ///console.log(result);
+                    if (result.code === 0) {
+                        $.each(result.data, function (index, value) {
+                            $('#xzqh').append(new Option(value.xzmc, value.xzbm));
+                        })
+                    };
+                    layui.form.render();
+                }
+            });
+            $.ajax({
+                url: '../../../api/uav_wrjzl',
+                type: 'get',
+                data: {},
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                    ///console.log(result);
+                    if (result.code === 0) {
+                        $.each(result.data, function (index, value) {
+                            $('#wrjzlno').append(new Option(value.wrjzlname, value.wrjzlno));
+                        })
+                    };
+                    layui.form.render();
+                }
+            });
+            $.ajax({
+                url: '../../../api/uav_yt',
+                type: 'get',
+                data: {},
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                    ///console.log(result);
+                    if (result.code === 0) {
+                        $.each(result.data, function (index, value) {
+                            $('#ytno').append(new Option(value.ytname, value.ytno));
+                        })
+                    };
+                    layui.form.render();
+                }
+            });
+            var tablecols = [{ type: "checkbox", width: 50 },
+            { field: 'rownumber', width: 60, minwidth: 50, title: '序号' },
+            { field: 'xzmc', title: '县区', minWidth: 90 },
+            { field: 'bgdw', title: '管理单位', minWidth: 190 },
+            { field: 'zrr', title: '责任人', minWidth: 120 },
+            { field: 'phone', title: '手机号码', minWidth: 130 },
+            { field: 'ppname', title: '无人机品牌', minWidth: 130 },
+            { field: 'wrjxh', title: '无人机型号', minWidth: 130 },
+            { field: 'wrjsn', title: '无人机序号', minWidth: 200 },
+            { field: 'wrjzlname', title: '无人机质量', minWidth: 120, hide: true },
+            { fixed: 'right', title: '操作', minWidth: 185, toolbar: '#currentTableBar', align: "center" }
+            ];
+            var datatable = table.render({
+                elem: '#currentTableId',
+                url: '../../api/gawurenji',
+                toolbar: "#toolbarDemo",
+                defaultToolbar: ['filter', 'print', {
+                    title: '导出数据',
+                    layEvent: 'export_out',
+                    icon: 'layui-icon-export',
+                }],
+                where: form.val("searchform"),
+                even: true, //开启隔行背景
+                size: 'lg', //小尺寸的表格
+                cols: [tablecols],
+                limits: [10, 20, 50, 100],
+                limit: 20,
+                page: true,
+                skin: 'row'
+            });
+            //隐藏数据表格工具条
+            var login_data = layui.data('login_data');
+            /////console.log(login_data.superadmin);
+            //if (login_data.superadmin != 1) { tablecols[12].hide = true; }
+            // 监听搜索操作
+            layui.$('button[lay-filter="data-search-btn"]').on('click', function () {
+                var data = form.val("searchform");
+                var result = JSON.stringify(data);
+                ///console.log(result);
+                table.reload('currentTableId', { page: { curr: 1 }, where: { searchParams: result } }, 'data');
+                return false;
+            });
+
+            /**
+             * toolbar监听事件
+             */
+
+            table.on('toolbar(currentTableFilter)', function (obj) {
+                var checkStatus = table.checkStatus(obj.config.id);
+                ///console.log(checkStatus);
+
+                if (obj.event === 'export_out') {
+                    var searchData = form.val("searchform");
+                    exportExcel(tablecols, '../../api/gawurenji', searchData, 10000, '公安系统无人机数据', '公安系统无人机数据');
+                }
+                else if (obj.event === 'add') {
+                    var index = layer.open({
+                        title: '添加公安系统无人机',
+                        type: 2,
+                        shade: 0.2,
+                        maxmin: false,
+                        shadeClose: false,
+                        area: ['1300px', Math.min(window.innerHeight * 0.9, 1200) + 'px'],
+                        content: './checkgawurenji.html',
+                        success: function (layero, index) {
+                            var iframe = window['layui-layer-iframe' + index];
+                            iframe.child({ datano: 0, type: 'Insert' });
+                        },
+                        end: function () {
+                        }
+                    })
+                }
+                else if (obj.event === 'import') {
+                    var index = layer.open({
+                        title: '批量导入公安系统无人机',
+                        type: 2,
+                        shade: 0.2,
+                        maxmin: false,
+                        shadeClose: false,
+                        area: ['900px', '700px'],
+                        content: './importgawurenji.html'
+                    })
+                }
+
+
+            });
+            layui.$(document).on('table_reload', function (even, data) {
+                //子页面的处理完成后调用刷新表格
+                if (data == 'shuaxin') {
+                    table.reload('currentTableId', { where: { searchParams: JSON.stringify(form.val("searchform")) } }, 'data');
+                }
+            });
+            table.on('tool(currentTableFilter)', function (obj) {
+                if (obj.event == 'checkshoufei') {
+                    var index = layer.open({
+                        title: '公安系统无人机信息详情',
+                        type: 2,
+                        shade: 0.2,
+                        maxmin: false,
+                        shadeClose: true,
+                        area: ['1300px', Math.min(window.innerHeight * 0.9, 1200) + 'px'],
+                        content: './checkgawurenji.html',
+                        success: function (layero, index) {
+                            var iframe = window['layui-layer-iframe' + index];
+                            iframe.child({ datano: obj.data.datano, type: 'detail' });
+                        }
+                    })
+                }
+                else if (obj.event == 'updateshoufei') {
+                    var login_data = layui.data('login_data');
+                    ///console.log(login_data);
+                    ///console.log(obj.data);
+                    if (login_data.superadmin != 1 && obj.data.createid != login_data.userid) {
+                        layer.msg('你不能编辑其他用户的数据', {
+                            time: 1200,
+                            icon: 5
+                        });
+                        return;
+                    } else if (login_data.superadmin == 1) {
+                        if (login_data.xzbm !== obj.data.xzqh.substring(0, login_data.xzbm.length)) {
+                            layer.msg('你不是该区域管理员,不能编辑', {
+                                time: 1200,
+                                icon: 5
+                            });
+                            return;
+                        }
+                    }
+                    var index = layer.open({
+                        title: '修改无人机信息',
+                        type: 2,
+                        shade: 0.2,
+                        maxmin: false,
+                        shadeClose: false,
+                        area: ['1300px', Math.min(window.innerHeight * 0.9, 1200) + 'px'],
+                        content: './checkgawurenji.html',
+                        success: function (layero, index) {
+                            var iframe = window['layui-layer-iframe' + index];
+                            iframe.child({ datano: obj.data.datano, type: 'edit' });
+                        },
+                        end: function () { }
+                    })
+                }
+                else if (obj.event === 'deleteshoufei') {
+                    var login_data = layui.data('login_data');
+                    if (login_data.superadmin != 1 && obj.data.createid != login_data.userid) {
+                        layer.msg('你不能删除其他用户的数据', {
+                            time: 1200,
+                            icon: 5
+                        });
+                        return;
+                    } else if (login_data.superadmin == 1) {
+                        if (login_data.xzbm !== obj.data.xzqh.substring(0, login_data.xzbm.length)) {
+                            layer.msg('你不是该区域管理员,不能删除', {
+                                time: 1200,
+                                icon: 5
+                            });
+                            return;
+                        }
+                    }
+                    layer.confirm('确定要删除吗？', function (index) {
+                        var deleteData = {
+                            datano: obj.data.datano,
+                            edittype: 'delete'
+                        };
+                        var loadIndex = layer.load(2);
+                        $.post('../../api/editgawurenji', JSON.stringify(deleteData), function (res) {
+                            layer.close(loadIndex);
+                            if (res.code === 0) {
+                                layer.msg("删除成功，" + res.msg, {
+                                    time: 1200,
+                                    icon: 1
+                                }, function () {
+                                    table.reload('currentTableId', { where: { searchParams: JSON.stringify(form.val("searchform")) } }, 'data');
+                                })
+                            } else {
+
+                                layer.msg(res.msg, {
+                                    time: 1200,
+                                    icon: 5
+                                }, function () { });
+                            }
+                        }, 'json')
+                    });
+                }
+
+
+            });
+
+            //监听表格复选框选择
+            table.on('checkbox(currentTableFilter)', function (obj) {
+                ///console.log(obj)
+            });
+        });
+    </script>
+</body>
+
+</html>

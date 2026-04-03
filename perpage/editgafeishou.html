@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>公安飞手资料编辑</title>
+    <link rel="stylesheet" href="../lib/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../css/public.css" media="all">
+</head>
+
+<body>
+    <div class="layui-form" style="width: 700px;margin-top: 10px" lay-filter="searchform">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label required">行政区划</label>
+                <div class="layui-input-inline">
+                    <div class="layui-input-wrap">
+                        <div class="layui-input-prefix">
+                            <i class="layui-icon layui-icon-transfer"></i>
+                        </div>
+                        <select name="xzqh" id="xzqh" lay-verify="required|xzqh">
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">飞手姓名</label>
+            <div class="layui-input-block">
+                <div class="layui-input-wrap">
+                    <div class="layui-input-prefix">
+                        <i class="layui-icon layui-icon-username"></i>
+                    </div>
+                    <input type="text" name="holdername" id="holdername" lay-verify="required" placeholder="请输入飞手姓名" maxlength="25"
+                        autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">身份证号码</label>
+            <div class="layui-input-block">
+                <div class="layui-input-wrap">
+                    <div class="layui-input-prefix">
+                        <i class="layui-icon layui-icon-vercode"></i>
+                    </div>
+                    <input type="text" name="holderno" id="holderno" lay-verify="required|identity" maxlength="20"
+                        placeholder="请输入飞手身份证号码" autocomplete="off" class="layui-input"
+                        pattern="[0-9xX]+" oninput="this.value = this.value.replace(/[^0-9xX]/g, '')">
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label required">警种/派出所</label>
+            <div class="layui-input-block">
+                <div class="layui-input-wrap">
+                    <div class="layui-input-prefix">
+                        <i class="layui-icon layui-icon-group"></i>
+                    </div>
+                    <input type="text" name="bumen" lay-verify="required" placeholder="请输入飞手警种/派出所" autocomplete="off" maxlength="100"
+                        class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">飞手资质</label>
+            <div class="layui-input-inline">
+                <div class="layui-input-wrap">
+                    <div class="layui-input-prefix">
+                        <i class="layui-icon layui-icon-form"></i>
+                    </div>
+                    <select name="zizhino" id="zizhino" lay-verify="required">
+                        <option value="">请选择飞手资质</option>
+                    </select>
+                </div>
+            </div>
+            <label class="layui-form-label required">取得时间</label>
+            <div class="layui-input-inline">
+                <div class="layui-input-wrap">
+                    <div class="layui-input-prefix">
+                        <i class="layui-icon layui-icon-date"></i>
+                    </div>
+                    <input name="zizhitime" value="" id="zizhitime" autocomplete="off" class="layui-input" type="text"
+                        lay-verify="required" placeholder="选择资质取得时间">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">人员类型</label>
+            <div class="layui-input-block">
+                <div class="layui-input-wrap">
+                    <div class="layui-input-prefix">
+                        <i class="layui-icon layui-icon-cols"></i>
+                    </div>
+                    <select name="leibieno" id="leibieno" lay-verify="required">
+                        <option value="">请选择人员类型</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">手机号码</label>
+            <div class="layui-input-block">
+                <div class="layui-input-wrap">
+                    <div class="layui-input-prefix">
+                        <i class="layui-icon layui-icon-cellphone"></i>
+                    </div>
+                    <input type="text" name="phone" id="phone" lay-verify="phone" placeholder="请输入飞手手机号码" maxlength="20"
+                        autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="layui-form-item">
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">备注</label>
+                <div class="layui-input-block">
+                    <textarea id="beizhu" name="beizhu" placeholder="输入飞手其他相关介绍" class="layui-textarea" maxlength="250"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn layui-btn-normal layui-btn-radius" id="commit" lay-submit
+                        lay-filter="formDemo"><i class="layui-icon layui-icon-success"></i> 立即提交</button>
+                    <button class="layui-btn layui-btn-danger layui-btn-radius" id="closeBtn"><i
+                            class="layui-icon layui-icon-error"></i> 关闭编辑</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
+    <script src="../lib/layui/layui.js" charset="utf-8"></script>
+    <!-- <script src="../lib/jq-module/zyupload/zyupload-1.0.0.min.js" charset="utf-8"></script> -->
+    <script type="text/javascript">
+        var currentEditType = '';
+
+        function child(dataFromFather) {
+            ///console.log(dataFromFather);
+            var form = layui.form;
+            currentEditType = dataFromFather.type;
+            var datano = dataFromFather.datano;
+
+            $.when(
+                $.ajax({
+                    url: '../../../api/gaorg',
+                    type: 'get',
+                    dataType: "json"
+                }),
+                $.ajax({
+                    url: '../../../api/uav_zizhi',
+                    type: 'get',
+                    dataType: "json"
+                }),
+                $.ajax({
+                    url: '../../../api/ga_leibie',
+                    type: 'get',
+                    dataType: "json"
+                })
+            ).done(function (result1, result2, result3) {
+                if (result1[0].code === 0) {
+                    $('#xzqh').empty();
+                    $.each(result1[0].data, function (index, value) {
+                        $('#xzqh').append(new Option(value.xzmc, value.xzbm));
+                    });
+                }
+
+                if (result2[0].code === 0) {
+                    $('#zizhino').empty();
+                    $.each(result2[0].data, function (index, value) {
+                        $('#zizhino').append(new Option(value.zizhiname, value.zizhino));
+                    });
+                }
+
+                if (result3[0].code === 0) {
+                    $('#leibieno').empty();
+                    $.each(result3[0].data, function (index, value) {
+                        $('#leibieno').append(new Option(value.leibiename, value.leibieno));
+                    });
+                }
+
+                form.render('select');
+
+                if (currentEditType === 'update' && datano > 0) {
+                    $.ajax({
+                        url: '../../api/gafeishou',
+                        type: 'get',
+                        data: {
+                            datano: datano
+                        },
+                        dataType: "json",
+                        success: function (result) {
+                            ///console.log(result);
+                            ///console.log(result.data.length);
+                            if (result.code === 0 && result.data.length === 1) {
+                                form.val('searchform', {
+                                    "xzqh": result.data[0].xzqh,
+                                    "holdername": result.data[0].holdername,
+                                    "holderno": result.data[0].holderno,
+                                    "bumen": result.data[0].bumen,
+                                    "zizhino": result.data[0].zizhino,
+                                    "leibieno": result.data[0].leibieno,
+                                    "phone": result.data[0].phone,
+                                    "zizhitime": result.data[0].zizhitime,
+                                    "beizhu": result.data[0].beizhu,
+                                });
+                                $('input[name="datano"]').remove();
+                                $('<input type="hidden" name="datano" value="' + datano + '">').insertBefore('#commit');
+                            } else {
+                                var index = layer.alert("未获取预期数据", {
+                                    title: '错误'
+                                }, function () {
+                                    layer.close(index);
+                                    var iframeIndex = parent.layer.getFrameIndex(window.name);
+                                    parent.layer.close(iframeIndex);
+                                });
+                            }
+                        }
+                    })
+                }
+            }).fail(function () {
+                layer.msg('基础数据加载失败', { icon: 2 }, function () {
+                    var iframeIndex = parent.layer.getFrameIndex(window.name);
+                    parent.layer.close(iframeIndex);
+                });
+            });
+        }
+    </script>
+    <script type="text/javascript">
+
+        layui.use(['upload', 'element', 'layer', 'form'], function () {
+            var $ = layui.jquery
+                , upload = layui.upload
+                , element = layui.element
+                , layer = layui.layer
+                , form = layui.form
+                , laydate = layui.laydate;
+            laydate.render({
+                elem: '#zizhitime'
+                , type: 'date'
+                , value: '2015-01-01'
+            });
+            form.on('submit(formDemo)', function (data) {
+                dataJson = form.val("searchform");
+                ///console.log(dataJson);
+
+                var datano = dataJson.datano || 0;
+                dataJson['edittype'] = currentEditType;
+                dataJson['datano'] = datano;
+                if (currentEditType !== 'insert' && currentEditType !== 'update') {
+                    layer.msg('操作类型错误', function () { });
+                    return false;
+                }
+
+                $.post('../../api/editgafeishou', JSON.stringify(dataJson), function (res) {
+                    if (res.code === 0) {
+                        layer.msg(res.msg, { icon: 1, time: 1200 }, function () {
+                            parent.layui.$(window.parent.document).trigger('table_reload', 'shuaxin');
+                            var iframeIndex = parent.layer.getFrameIndex(window.name);
+                            parent.layer.close(iframeIndex);
+                        })
+                    } else {
+                        layer.msg(res.msg, { icon: 2 }, function () { });
+                    }
+                }, 'json')
+            });
+            layui.$('#closeBtn').on('click', function () {
+                var iframeIndex = parent.layer.getFrameIndex(window.name);
+                parent.layer.close(iframeIndex);
+                return false;
+            });
+        });
+    </script>
+</body>
+
+</html>
