@@ -1,0 +1,17 @@
+{
+  "version": "3.7.0",
+  "buildDate": "2026-04-07",
+  "updateUrl": "",
+  "changelog": {
+    "zh-CN": "1. 新增录音状态显示\n2. 修复许可证检查逻辑\n3. 支持多语言即时切换\n4. 新增音频编码选项\n5. 增强安全性防护",
+    "zh-TW": "1. 新增錄音狀態顯示\n2. 修復許可證檢查邏輯\n3. 支援多語言即時切換\n4. 新增音頻編碼選項\n5. 增強安全性防護",
+    "en": "1. Added recording status display\n2. Fixed license check logic\n3. Support instant language switching\n4. Added audio codec option\n5. Enhanced security protection",
+    "es": "1. Añadida pantalla de estado de grabación\n2. Corregida la lógica de verificación de licencia\n3. Soporte de cambio de idioma instantáneo\n4. Añadida opción de códec de audio\n5. Protección de seguridad mejorada",
+    "fr": "1. Affichage de l'état d'enregistrement ajouté\n2. Correction de la logique de vérification de licence\n3. Prise en charge du changement de langue instantané\n4. Option de codec audio ajoutée\n5. Protection de sécurité renforcée",
+    "de": "1. Aufnahmestatusanzeige hinzugefügt\n2. Lizenzprüfungslogik korrigiert\n3. Sofortiger Sprachwechsel unterstützt\n4. Audio-Codec-Option hinzugefügt\n5. Verbesserter Sicherheitsschutz",
+    "ru": "1. Добавлен индикатор состояния записи\n2. Исправлена логика проверки лицензии\n3. Поддержка мгновенного переключения языков\n4. Добавлена опция аудиокодека\n5. Улучшенная защита безопасности",
+    "ja": "1. 録画ステータス表示を追加\n2. ライセンスチェックロジックを修正\n3. 即時言語切替をサポート\n4. オーディオコーデックオプションを追加\n5. セキュリティ保護を強化"
+  },
+  "critical": false,
+  "minimumVersion": "3.5.0"
+}
