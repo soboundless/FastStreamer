@@ -1,5 +1,5 @@
 {
-  "version": "1.5.2",
+  "version": "1.5.2.0",
   "buildDate": "2026-04-07",
   "updateUrl": "",
   "changelog": {
@@ -13,5 +13,5 @@
     "ja": "1. 録画ステータス表示を追加\n2. ライセンスチェックロジックを修正\n3. 即時言語切替をサポート\n4. オーディオコーデックオプションを追加\n5. セキュリティ保護を強化"
   },
   "critical": false,
-  "minimumVersion": "1.5.0"
+  "minimumVersion": "1.5.0.0"
 }
