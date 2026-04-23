@@ -371,7 +371,7 @@
                 </a>
             </div>
             <div style="margin-top: 30px; padding: 15px; background-color: rgba(255,255,255,0.1); border-radius: 8px; text-align: left; display: inline-block;">
-                <p style="margin: 0 0 10px 0; font-size: 14px; color: #fff;"><i class="fa fa-check-circle" style="margin-right: 8px;"></i>版本：V2.2.3</p>
+                <p style="margin: 0 0 10px 0; font-size: 14px; color: #fff;"><i class="fa fa-check-circle" style="margin-right: 8px;"></i>版本：V1.5.1.0</p>
                 <p style="margin: 0 0 10px 0; font-size: 14px; color: #fff;"><i class="fa fa-check-circle" style="margin-right: 8px;"></i>支持系统：WIN7 / WIN8.1 / WIN10 / WIN11</p>
                 <p style="margin: 0; font-size: 14px; color: #ffd700;"><i class="fa fa-info-circle" style="margin-right: 8px;"></i>注意：WIN10以下系统需要自行安装 .NET 4.8</p>
             </div>
@@ -471,12 +471,12 @@
         <div class="section" id="testimonials">
             <div class="section-title">
                 <h2>测试截图</h2>
-                <p>实际使用效果展示</p>
+                <p>实际使用效果展示（点击图片放大查看）</p>
             </div>
             <div class="test-grid" style="grid-template-columns: repeat(3, 1fr);">
                 <div class="test-card">
-                    <div class="test-image">
-                        <img src="../images/test01.jpg" alt="推流测试">
+                    <div class="test-image" style="cursor: pointer;">
+                        <img src="../images/test01.jpg" alt="推流测试" data-src="../images/test01.jpg" class="test-img">
                     </div>
                     <div class="test-info">
                         <h3><i class="fa fa-signal" style="color: #2c5f7d; margin-right: 6px;"></i>推流测试</h3>
@@ -484,8 +484,8 @@
                     </div>
                 </div>
                 <div class="test-card">
-                    <div class="test-image">
-                        <img src="../images/test02.jpg" alt="监控对接">
+                    <div class="test-image" style="cursor: pointer;">
+                        <img src="../images/test02.jpg" alt="监控对接" data-src="../images/test02.jpg" class="test-img">
                     </div>
                     <div class="test-info">
                         <h3><i class="fa fa-plug" style="color: #2c5f7d; margin-right: 6px;"></i>监控对接</h3>
@@ -493,8 +493,8 @@
                     </div>
                 </div>
                 <div class="test-card">
-                    <div class="test-image">
-                        <img src="../images/test03.jpg" alt="VLC播放器测试">
+                    <div class="test-image" style="cursor: pointer;">
+                        <img src="../images/test03.jpg" alt="VLC播放器测试" data-src="../images/test03.jpg" class="test-img">
                     </div>
                     <div class="test-info">
                         <h3><i class="fa fa-play" style="color: #2c5f7d; margin-right: 6px;"></i>VLC播放器测试</h3>
@@ -513,10 +513,18 @@
             <div class="download-section">
                 <h3><i class="fa fa-rocket" style="margin-right: 8px;"></i>FastStreamer 专业版</h3>
                 <p>集成了RTSP、RTMP、HLS、WebRTC、SRT等主流流媒体协议，满足多种场景需求</p>
+                <div style="margin-bottom: 30px;">
+                    <p style="font-size: 16px; font-weight: bold; margin-bottom: 15px; color: #333;">选择下载方式：</p>
+                    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                        <a href="https://github.com/soboundless/FastStreamer/releases/download/v1.5.1.0/FastStreamer_Setup_1.5.1.0.exe" class="btn btn-primary" style="background-color: #2c5f7d; color: #fff;">
+                            <i class="fa fa-github"></i>GitHub 直链
+                        </a>
+                        <a href="https://pan.baidu.com/s/1AFqefyX3sbP1RExj-jnahA?pwd=rhn6" class="btn btn-secondary" style="background-color: #00a1d6; color: #fff; border: none;">
+                            <i class="fa fa-cloud"></i>百度网盘 (提取码: rhn6)
+                        </a>
+                    </div>
+                </div>
                 <div class="btn-group">
-                    <a href="#" class="btn btn-primary" style="background-color: #2c5f7d; color: #fff;">
-                        <i class="fa fa-download"></i>立即下载（试用版）
-                    </a>
                     <a href="payment.html" class="btn btn-secondary" style="background-color: transparent; color: #2c5f7d; border: 2px solid #2c5f7d;">
                         <i class="fa fa-shopping-cart"></i>购买授权
                     </a>
@@ -532,12 +540,24 @@
         layui.use(['layer'], function() {
             var layer = layui.layer;
             
-            document.querySelectorAll('a[href="#download"]').forEach(function(btn) {
-                btn.addEventListener('click', function(e) {
-                    if (this.getAttribute('href') === '#download') {
-                        e.preventDefault();
-                        layer.msg('下载功能即将开放，敬请期待！');
-                    }
+            // 为测试截图绑定点击事件，使用 layer.photos 打开图片查看器
+            var testImages = [
+                {"alt": "推流测试 - 多协议推流测试效果", "src": "../images/test01.jpg"},
+                {"alt": "监控对接 - 与NVR监控平台对接效果", "src": "../images/test02.jpg"},
+                {"alt": "VLC播放器测试 - 使用VLC播放器播放网络流媒体效果", "src": "../images/test03.jpg"}
+            ];
+            
+            document.querySelectorAll('.test-img').forEach(function(img, index) {
+                img.addEventListener('click', function() {
+                    // 为每张图片创建独立的查看器，只包含当前图片
+                    layer.photos({
+                        photos: {
+                            "title": "FastStreamer 测试截图",
+                            "id": 1,
+                            "data": [testImages[index]]
+                        },
+                        anim: 5
+                    });
                 });
             });
         });
