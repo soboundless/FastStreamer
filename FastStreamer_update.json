@@ -1,7 +1,7 @@
 {
   "version": "1.5.2.0",
   "buildDate": "2026-04-07",
-  "updateUrl": "",
+  "updateUrl": "https://github.com/soboundless/FastStreamer/releases/download/v1.5.2.0/FastStreamer_Setup_1.5.2.0_X64.exe",
   "changelog": {
     "zh-CN": "1. 新增录音状态显示\n2. 修复许可证检查逻辑\n3. 支持多语言即时切换\n4. 新增音频编码选项\n5. 增强安全性防护",
     "zh-TW": "1. 新增錄音狀態顯示\n2. 修復許可證檢查邏輯\n3. 支援多語言即時切換\n4. 新增音頻編碼選項\n5. 增強安全性防護",
